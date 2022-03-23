@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%=title%>
+    </title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/uploadimg.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>
+            <span><%=title%></span>
+        </h2>
+        <div class="info">
+            <p>
+                <label for="title">Photo Title</label>
+                <input type="text" id="title" name="title">
+            </p>
+            <p>
+                <label for="introduce">Introduce</label>
+                <input type="text" id="introduce" name="introduce">
+            </p>
+            <p>
+                <label for="name">Your name</label>
+                <input type="text" name="name" id="name">
+            </p>
+            <label for="photo">Upload your Photo:</label>
+            <img src="/images/cathedral.jpg">
+        </div>
+        <button type="button">Submit</button>
+    </div>
+</body>
+
+</html>
