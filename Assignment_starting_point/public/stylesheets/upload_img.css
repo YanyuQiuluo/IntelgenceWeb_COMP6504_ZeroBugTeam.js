@@ -1,0 +1,111 @@
+* {
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.container {
+    width: 1000px;
+    height: 730px;
+    margin: 40px auto;
+    position: relative;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 60px;
+    height: 20px;
+}
+
+h2 span {
+    background: #fff;
+    padding: 0 20px;
+}
+
+.container a {
+    margin-left: 25%;
+    line-height: 4em;
+    font-weight: bold;
+    position: relative;
+}
+
+.container .info {
+    height: 16px;
+    width: 300px;
+    position: absolute;
+    left: 130px;
+    top: -4px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    text-indent: 0.5em;
+}
+
+.container .info:hover {
+    outline: none;
+    border-color: #00a1d6;
+}
+
+.container .info:focus {
+    outline: none;
+    border-color: #0cb4ec;
+}
+
+form {
+    position: relative;
+}
+
+#imgOne {
+    height: 30px;
+    width: 300px;
+    cursor: pointer;
+    position: absolute;
+    left: 350px;
+    top: 30px;
+    opacity: 0;
+}
+
+#uploadbtn {
+    height: 30px;
+    width: 300px;
+    position: absolute;
+    left: 350px;
+    top: 30px;
+    background: #0cb4ec;
+    text-align: center;
+    color: #fff;
+    border-radius: 4px;
+    line-height: 30px;
+}
+
+#photo {
+    width: 500px;
+    height: 300px;
+    object-fit: contain;
+    display: inline-block;
+    position: absolute;
+    top: 100px;
+    left: 250px;
+    border: 1px solid #ddd;
+}
+
+#submitbtn {
+    width: 300px;
+    height: 30px;
+    position: absolute;
+    left: 350px;
+    top: 450px;
+    background: #0cb4ec;
+    text-align: center;
+    color: #fff;
+    border-radius: 4px;
+    line-height: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+#submitbtn:hover,
+#uploadbtn:hover {
+    background: #42c6f1;
+    cursor: pointer;
+}

@@ -29,7 +29,8 @@ h2 span {
     position: relative;
 }
 
-.container .info p {
+.container .info p,
+.container .info .img {
     height: 25px;
     padding-bottom: 20px;
 }
@@ -65,7 +66,8 @@ input[type="password"]:focus {
     height: auto;
 }
 
-.container .info img {
+
+/* .container .info img {
     width: 600px;
     height: 300px;
     border: 1px solid #ddd;
@@ -74,13 +76,13 @@ input[type="password"]:focus {
     position: absolute;
     left: 180px;
     margin-top: 40px;
-}
+} */
 
 button {
     width: 200px;
     height: 30px;
     position: absolute;
-    bottom: 50px;
+    bottom: 30px;
     left: 400px;
     background: #00a1d6;
     color: #fff;
@@ -91,5 +93,33 @@ button {
 
 button:hover {
     background: #33b4de;
+    cursor: pointer;
+}
+
+.container .info .img .upload-action {
+    display: inline-block;
+    overflow: hidden;
+    border: 1px solid #00a1d6;
+    border-radius: 3px;
+}
+
+.container .info .img .uploadbtn {
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    background: #00a1d6;
+    position: absolute;
+    left: 330px;
+    border-radius: 4px;
+}
+
+.container .info .img .file-select {
+    position: absolute;
+    left: 330px;
+    opacity: 0;
+    height: 30px;
+    width: 300px;
     cursor: pointer;
 }
