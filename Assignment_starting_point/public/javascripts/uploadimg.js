@@ -1,3 +1,9 @@
+
+
+
+
+
+
 // function uploadImage(input, target) {
 //     if (typeof FileReader === 'undefined') {
 //         alert('Your browser does not support FileReader.');
@@ -30,4 +36,20 @@ function preImg(sourceId, targetId) {
     var url = getFileUrl(sourceId);
     var imgPre = document.getElementById(targetId);
     imgPre.src = url;
+}
+
+function uploadreport(){
+
+    const report = {title:document.getElementById('title').value,
+        name:document.getElementById('name').value,
+        intro:document.getElementById('intro').value,
+        imgOne:document.getElementById('imgOne').value};
+
+    let reportloader = require('../database/mongodb');
+    reportloader(report);
+
+    //initCanvas(socket, imageUrl);
+    //hideLoginInterface(roomNo, name);
+
+
 }

@@ -15,17 +15,17 @@
 <body>
     <div class="container">
         <h2><span><%=title%></span></h2>
-        <a>Photo Title：<input class="info" type="text" /></a>
+        <a>Photo Title：<input class="info" id="title" type="text" /></a>
         <br>
-        <a>Your Name：<input class="info" type="text" /></a>
+        <a>Your Name：<input class="info" id="name" type="text" /></a>
         <br>
-        <a>Introduction：<input class="info" type="text" /></a>
+        <a>Introduction：<input class="info" id="intro" type="text" /></a>
         <br>
         <form action="">
             <div id="uploadbtn">Upload Image</div>
             <input type="file" name="imgOne" id="imgOne" onchange="preImg(this.id,'photo');" />
             <img id="photo" src="" />
-            <button id="submitbtn" type="button">
+            <button id="submitbtn" onclick="uploadreport()" type="button">
                 <a id="submit" href="/homepage">Submit</a>
             </button>
         </form>
