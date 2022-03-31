@@ -4,7 +4,7 @@
 
 .container {
     width: 1000px;
-    height: 730px;
+    height: auto;
     margin: 40px auto;
     position: relative;
 }
@@ -23,7 +23,7 @@ h2 span {
     padding: 0 20px;
 }
 
-.container a {
+.container p {
     margin-left: 25%;
     line-height: 4em;
     font-weight: bold;
@@ -35,7 +35,7 @@ h2 span {
     width: 300px;
     position: absolute;
     left: 130px;
-    top: -4px;
+    top: 20px;
     border-radius: 4px;
     border: 1px solid #ddd;
     text-indent: 0.5em;
@@ -51,10 +51,6 @@ h2 span {
     border-color: #0cb4ec;
 }
 
-form {
-    position: relative;
-}
-
 #imgOne {
     height: 30px;
     width: 300px;
@@ -68,9 +64,9 @@ form {
 #uploadbtn {
     height: 30px;
     width: 300px;
-    position: absolute;
+    /* position: absolute;
     left: 350px;
-    top: 30px;
+    top: 30px; */
     background: #0cb4ec;
     text-align: center;
     color: #fff;
@@ -104,7 +100,8 @@ form {
     cursor: pointer;
 }
 
-#submit {
+
+/* #submit {
     width: 300px;
     height: 30px;
     line-height: 27px;
@@ -118,4 +115,4 @@ form {
 #uploadbtn:hover {
     background: #42c6f1;
     cursor: pointer;
-}
+} */

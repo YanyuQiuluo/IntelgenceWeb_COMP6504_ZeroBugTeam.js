@@ -13,23 +13,24 @@
 </head>
 
 <body>
-    <div class="container">
+    <form class="container">
         <h2><span><%=title%></span></h2>
-        <a>Photo Title：<input class="info" id="title" type="text" /></a>
+        <p>Photo Title：<input class="info" name="title" id="title" type="text" /></p>
         <br>
-        <a>Your Name：<input class="info" id="name" type="text" /></a>
+        <p>Your Name：<input class="info" name="auther" id="name" type="text" /></p>
         <br>
-        <a>Introduction：<input class="info" id="intro" type="text" /></a>
+        <p>Introduction：<input class="info" name="intro" id="intro" type="text" /></p>
         <br>
-        <form action="">
+        <!-- <div class="img">
             <div id="uploadbtn">Upload Image</div>
             <input type="file" name="imgOne" id="imgOne" onchange="preImg(this.id,'photo');" />
             <img id="photo" src="" />
-            <button id="submitbtn" onclick="uploadreport()" type="button">
+            <button id="submitbtn" onclick="uploadreport()" type="submit">
                 <a id="submit" href="/homepage">Submit</a>
             </button>
-        </form>
-    </div>
+        </div> -->
+        <input type="submit" name="submit" id="submitbtn">
+    </form>
 </body>
 
 </html>
