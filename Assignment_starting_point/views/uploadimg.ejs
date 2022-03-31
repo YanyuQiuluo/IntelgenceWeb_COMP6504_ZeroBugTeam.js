@@ -9,6 +9,7 @@
     </title>
     <link rel="stylesheet" href="/stylesheets/upload_img.css">
     <script type="text/javascript" src="/javascripts/uploadimg.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
     </script>
 
@@ -23,7 +24,7 @@
         <br>
         <a>Introduction：<input class="info" id="intro" type="text" /></a>
         <br>
-        <form action="">
+        <form action="report">
             <div id="uploadbtn">Upload Image</div>
             <input type="file" name="imgOne" id="imgOne" onchange="preImg(this.id,'photo');" />
             <img id="photo" src="" />

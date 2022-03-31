@@ -39,6 +39,17 @@ function preImg(sourceId, targetId) {
     imgPre.src = url;
 }
 
+function sendAxiosQuery(url, data) {
+
+    axios.post(url , data)
+        .then (function (dataR) {
+            alert ('success: ',JSON.stringify(dataR));
+        })
+        .catch( function (response) {
+            alert (response.toJSON());
+        })
+}
+
 function uploadreport(){
     console.log("生成报告123");
     const report = {title:document.getElementById('title').value,
@@ -47,10 +58,10 @@ function uploadreport(){
         imgOne:document.getElementById('imgOne').value};
     console.log(report);
 
-    //require('/database/mongodb.js');
-    console.log(require('/public/images/cathedral.jpg'));
-    let reportloader = require('/database/mongodb.js');
-    reportloader(report);
+    sendAxiosQuery('uploadimg', JSON.stringify(report));
+
+
+
 
     //initCanvas(socket, imageUrl);
     //hideLoginInterface(roomNo, name);
