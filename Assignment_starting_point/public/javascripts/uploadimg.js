@@ -20,6 +20,7 @@
 //     reader.readAsDataURL(document.getElementById(input).files[0]);
 // }
 
+
 function getFileUrl(sourceId) {
     var url;
     if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
@@ -39,13 +40,16 @@ function preImg(sourceId, targetId) {
 }
 
 function uploadreport(){
-
+    console.log("生成报告123");
     const report = {title:document.getElementById('title').value,
         name:document.getElementById('name').value,
         intro:document.getElementById('intro').value,
         imgOne:document.getElementById('imgOne').value};
+    console.log(report);
 
-    let reportloader = require('../database/mongodb');
+    //require('/database/mongodb.js');
+    console.log(require('/public/images/cathedral.jpg'));
+    let reportloader = require('/database/mongodb.js');
     reportloader(report);
 
     //initCanvas(socket, imageUrl);
