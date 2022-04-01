@@ -5,35 +5,44 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>
-        <%=title%>
+        Upload Your Image
     </title>
     <link rel="stylesheet" href="/stylesheets/upload_img.css">
     <script type="text/javascript" src="/javascripts/uploadimg.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 
 <body>
-    <div class="container">
-        <h2><span><%=title%></span></h2>
-        <a>Photo Title：<input class="info" id="title" type="text" /></a>
+    <form id="xFrom" class="container" onsubmit="uploadreport('/uploadimg')">
+        <h2><span>Upload Your Image</span></h2>
+        <p>Photo Title：<input class="info" name="title" id="title" type="text" /></p>
         <br>
-        <a>Your Name：<input class="info" id="name" type="text" /></a>
+        <p>Your Name：<input class="info" name="auther" id="auther" type="text" /></p>
         <br>
-        <a>Introduction：<input class="info" id="intro" type="text" /></a>
+        <p>Introduction：<input class="info" name="intro" id="intro" type="text" /></p>
         <br>
-        <form action="report">
+        <p><input id="submitbtn" name="submitbtn" value="Submit" type="submit" /></p>
+
+        <!-- <form action="report">
             <div id="uploadbtn">Upload Image</div>
             <input type="file" name="imgOne" id="imgOne" onchange="preImg(this.id,'photo');" />
             <img id="photo" src="" />
             <button id="submitbtn" onclick="uploadreport()" type="button">
                 <a id="submit" >Submit</a>
-                <! --href="/homepage"-->
             </button>
-        </form>
-    </div>
+        </form> -->
+        <!-- <div class="img">
+            <div id="uploadbtn">Upload Image</div>
+            <input type="file" name="imgOne" id="imgOne" onchange="preImg(this.id,'photo');" />
+            <img id="photo" src="" />
+            <button id="submitbtn" onclick="uploadreport()" type="submit">
+                <a id="submit" href="/homepage">Submit</a>
+            </button>
+        </div> -->
+        <!-- <input type="submit" name="submit" id="submitbtn"> -->
+    </form>
 </body>
 
 </html>
