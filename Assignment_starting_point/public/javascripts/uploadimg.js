@@ -31,3 +31,42 @@ function preImg(sourceId, targetId) {
     var imgPre = document.getElementById(targetId);
     imgPre.src = url;
 }
+
+function sendAxiosQuery(url, data) {
+    axios.post(url, JSON.stringify(data),{headers:{"Content-Type": "application/json"}})
+        .then (function (dataR) {
+            alert ('success: ',JSON.stringify(dataR));
+        })
+        .catch( function (response) {
+            alert (response.toJSON());
+        })
+}
+
+function uploadreport(url){
+    console.log("生成报告123");
+    var formArray = $("form").serializeArray();
+    var story={};
+    for (index in formArray){
+        story[formArray[index].name] = formArray[index].value;
+    }
+
+    sendAxiosQuery(url, story);
+    event.preventDefault();
+    // const report = {
+    //     title:document.getElementById('title').value,
+    //     name:document.getElementById('auther').value,
+    //     intro:document.getElementById('intro').value 
+    //     // imgOne:document.getElementById('imgOne').value};
+    // };
+        
+    // console.log(report);
+
+
+    // axios.post('/uploadimg/upimage', report)
+    //     .then(function (response) {
+    //         console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
+}
