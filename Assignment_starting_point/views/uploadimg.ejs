@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <form id="xFrom" class="container" onsubmit="uploadreport('/uploadimg')">
+    <form id="xForm" class="container" onsubmit="uploadreport('/uploadimg')">
         <h2><span>Upload Your Image</span></h2>
         <p>Photo Title：<input class="info" name="title" id="title" type="text" /></p>
         <br>
@@ -23,7 +23,7 @@
         <br>
         <p>Introduction：<input class="info" name="intro" id="intro" type="text" /></p>
         <br>
-        <p><input id="submitbtn" name="submitbtn" value="Submit" type="submit" /></p>
+        <p><input id="submitbtn" name="submitbtn" value="Submit" type="submit" onclick="javascript:window.location.href='/'" /></p>
 
         <!-- <form action="report">
             <div id="uploadbtn">Upload Image</div>
