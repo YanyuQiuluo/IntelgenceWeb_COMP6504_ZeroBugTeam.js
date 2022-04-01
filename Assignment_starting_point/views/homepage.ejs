@@ -9,10 +9,10 @@
 </head>
 
 <body>
-    <h2><span>Welcome!</span></h2>
+    <h2 id="title"><span>Welcome!</span></h2>
     <div class="container">
+        <% story.forEach(function(story){%>
         <div class="item">
-            <% story.forEach(function(story){%>
             <div class="item-info">
                 <label for="title"><%= story.title%></label><br>
                 <label for="auther"><%= story.auther%></label><br>
@@ -23,10 +23,19 @@
                 <img class="img" src="/images/cathedral.jpg">
             </a>
             <div style="clear: both;"></div>
-            <% }); %>
         </div>
+        <% }); %>
 
         <div style="clear: both;"></div>
+    </div>
+
+    <div class="tools">
+        <button id="tool">
+            <a href="#title"><img id="toolbtn" src="/images/backtop_icon.png"></a>
+        </button>
+        <button id="tool">
+            <a href="/uploadimg"><img id="toolbtn" src="/images/add_icon.png"></a>
+        </button>
     </div>
 </body>
 

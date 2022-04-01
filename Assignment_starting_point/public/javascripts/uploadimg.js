@@ -54,21 +54,4 @@ function uploadreport(url){
 
     sendAxiosQuery(url, story);
     event.preventDefault();
-    // const report = {
-    //     title:document.getElementById('title').value,
-    //     name:document.getElementById('auther').value,
-    //     intro:document.getElementById('intro').value 
-    //     // imgOne:document.getElementById('imgOne').value};
-    // };
-        
-    // console.log(report);
-
-
-    // axios.post('/uploadimg/upimage', report)
-    //     .then(function (response) {
-    //         console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
 }
