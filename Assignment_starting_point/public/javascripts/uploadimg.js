@@ -21,6 +21,7 @@
 // }
 
 
+
 function getFileUrl(sourceId) {
     var url;
     if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
@@ -40,8 +41,7 @@ function preImg(sourceId, targetId) {
 }
 
 function sendAxiosQuery(url, data) {
-
-    axios.post(url , data)
+    axios.post(url, JSON.stringify(data),{headers:{"Content-Type": "application/json"}})
         .then (function (dataR) {
             alert ('success: ',JSON.stringify(dataR));
         })
@@ -58,13 +58,13 @@ function uploadreport(){
         imgOne:document.getElementById('imgOne').value};
     console.log(report);
 
-    sendAxiosQuery('uploadimg', JSON.stringify(report));
 
-
-
-
-    //initCanvas(socket, imageUrl);
-    //hideLoginInterface(roomNo, name);
-
-
+    axios.post('/uploadimg/upimage', report)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
+

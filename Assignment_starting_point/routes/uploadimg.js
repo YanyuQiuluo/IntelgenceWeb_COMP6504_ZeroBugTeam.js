@@ -1,14 +1,27 @@
 var express = require('express');
 var router = express.Router();
+//const axios = require('axios');
+let reportloader = require('../database/mongodb');
 
-router.post('/uploadimg', function(req, res, next) {
-    let report = req.body;
+/*router.get('/', function(req, res, next) {
+    res.end('respond with a resource');
+});*/
 
-    //require('/database/mongodb.js');
-    //console.log(require('/public/images/cathedral.jpg'));
-    let reportloader = require('/database/mongodb.js');
+router.post('/upimage', function(req, res, next) {
+    res.setHeader('Content-Type', 'application/json');
+
+    let title = req.body.title;
+    let name = req.body.name;
+    let intro = req.body.intro;
+    let imgOne = req.body.imgOne;
+
+    let report = {
+        title:title,
+        name:name,
+        intro:intro,
+        imgOne:imgOne
+    }
     reportloader(report);
-    console.log(report);
 });
 
 module.exports = router;

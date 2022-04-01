@@ -10,8 +10,6 @@ module.exports = function (report) {
         dbo.collection("site").insertOne(report, function (err, res) {
             if (err) throw err;
             console.log("insert success");
-            console.log(report);
-            console.log(dbo);
             db.close();
         });
     });
