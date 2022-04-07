@@ -14,6 +14,27 @@ function init() {
     document.getElementById('chat_interface').style.display = 'none';
 
     //@todo here is where you should initialise the socket operations as described in teh lectures (room joining, chat message receipt etc.)
+    initChatSocket();
+}
+
+function initChatSocket() {
+    // called when someone joins the room. If it is someone else it notifies the joining of the room
+    chat.on('joined', function (room, userId) {
+        if (userId === name) {
+            // it enters the chat
+            hideLoginInterface(room, userId);
+        } else {
+            // notifies that someone has joined the room
+            writeOnHistory('<b>' + userId + '</b>' + ' joined room ' + room);
+        }
+    });
+    // called when a message is received
+    chat.on('chat', function (room, userId, chatText) {
+        let who = userId
+        if (userId === name) who = 'Me';
+        writeOnHistory('<b>' + who + ':</b> ' + chatText);
+    });
+
 }
 
 /**
@@ -33,6 +54,7 @@ function generateRoom() {
 function sendChatText() {
     let chatText = document.getElementById('chat_input').value;
     // @todo send the chat message
+    chat.emit('chat', roomNo, name, chatText);
 }
 
 /**
@@ -47,6 +69,8 @@ function connectToRoom() {
     //@todo join the room
     initCanvas(socket, imageUrl);
     hideLoginInterface(roomNo, name);
+
+    chat.emit('create or join', roomNo, name);
 }
 
 /**

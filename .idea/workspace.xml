@@ -26,7 +26,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Assignment_starting_point" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -34,7 +34,7 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="NodeJSConfigurationType" path-to-node="node" nameIsGenerated="true" working-dir="$PROJECT_DIR$">
+    <configuration name="Unnamed" type="NodeJSConfigurationType" path-to-node="$PROJECT_DIR$/../node" nameIsGenerated="true" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
   </component>
@@ -49,7 +49,7 @@
       <workItem from="1648487914900" duration="7000" />
       <workItem from="1648808895691" duration="12000" />
       <workItem from="1648808913539" duration="596000" />
-      <workItem from="1649279075444" duration="107000" />
+      <workItem from="1649279075444" duration="1246000" />
     </task>
     <servers />
   </component>
