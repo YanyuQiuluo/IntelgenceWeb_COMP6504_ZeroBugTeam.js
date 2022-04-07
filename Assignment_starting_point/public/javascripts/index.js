@@ -1,6 +1,7 @@
 let name = null;
 let roomNo = null;
 let socket=null;
+let chat= io.connect('/chat');
 
 
 /**
