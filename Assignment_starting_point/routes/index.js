@@ -1,6 +1,36 @@
 var express = require('express');
 var router = express.Router();
 
+// add
+// var fs = require('fs');
+var multer = require('multer');
+
+// var createFolder = function(folder){
+//     try{
+//         fs.accessSync(folder);
+//     }catch(e){
+//         fs.mkdirSync(folder);
+//     }
+// };
+
+// var uploadFolder = './public/upload';
+
+// createFolder(uploadFolder);
+
+var storage = multer.diskStorage({
+    //设置图片上传后存放的路径(默认放在系统临时文件夹中)
+    destination: function(req, file, cb){
+        cb(null, '../public/images');
+    },
+    //设置图片上传后图片的名称(默认随机给一个名字)
+    filename: function(req, file, cb){
+        cb(null, file.originalname);
+    }
+});
+var upload = multer({
+    storage:storage
+});
+
 var Story = require('../models/story');
 var uploadStory = require('../controllers/story');
 
@@ -43,22 +73,22 @@ router
     .get('/uploadimg', function(req, res, next) {
         res.render('uploadimg', { title: 'Upload Your Image' });
     })
-    .post('/uploadimg', uploadStory.insert);
-    // .post('/uploadimg', function(req, res, next) {
-    //     // res.render('uploadimg', { title: 'Upload Your Image' });
-    //     res.setHeader('Content-Type', 'application/json');
+    // .post('/uploadimg', uploadStory.insert);
+    .post('/uploadimg', upload.single('photo'), function(req, res, next){
 
-    //     let title = req.body.title;
-    //     let auther = req.body.auther;
-    //     let intro = req.body.intro;
-
-    //     let report = {
-    //         title: title,
-    //         auther: auther,
-    //         date: Date.now(),
-    //         intro: intro
-    //     }
-    //     reportloader = router;
-    // });
+        Story.create({
+            title: req.body.title,
+            auther: req.body.auther,
+            date: Date.now(),
+            intro: req.body.intro,
+            photo: req.file.originalname
+        }, function(err){
+            if(err){
+                return next(err);
+            }
+            res.redirect('/');
+        });
+    });
+    
 
 module.exports = router;

@@ -19,7 +19,8 @@ var Story = new Schema({
     title:{type:String, max:100},
     auther:{type:String, max:100},
     date:{type:Date, default: Date.now()},
-    intro:{type:String, max:100}
+    intro:{type:String, max:100},
+    photo:{type:String}
 });
 
 var storyModel = mongoose.model('Story', Story);

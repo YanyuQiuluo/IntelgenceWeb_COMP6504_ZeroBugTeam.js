@@ -11,8 +11,10 @@ exports.insert = function (req, res){
         title: story.title,
         auther: story.auther,
         date: Date.now(),
-        intro: story.intro
+        intro: story.intro,
+        photo: story.photo
     });
+
     console.log('received: ' + newStory);
 
     newStory.save()
