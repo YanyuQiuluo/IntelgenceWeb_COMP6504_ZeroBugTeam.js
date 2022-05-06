@@ -45,7 +45,6 @@ function sendAxiosQuery(url, data) {
 }
 
 function uploadreport(url){
-    console.log("生成报告123");
     var formArray = $("form").serializeArray();
     var story={};
     for (index in formArray){
