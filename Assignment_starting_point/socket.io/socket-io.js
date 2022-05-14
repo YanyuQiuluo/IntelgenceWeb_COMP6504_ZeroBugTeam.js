@@ -24,4 +24,29 @@ exports.init = function(io) {
         } catch (e) {
         }
       });
+
+    // The canvas namespace
+    const canvas= io
+        .of('/canvas')
+        .on('connection', function (socket) {
+            try {
+                /**
+                 * it creates or joins a room
+                 */
+                socket.on('finish', function (room, userId, width, height, prevX, prevY, currX, currY, color, thickness) {
+                    socket.join(room);
+                    canvas.to(room).emit('draw', userId, width, height, prevX, prevY, currX, currY, color, thickness);
+                });
+
+                socket.on('clear', function (room, c_width, c_height) {
+                    socket.join(room);
+                    canvas.to(room).emit('cleanup', c_width, c_height);
+                });
+
+                socket.on('disconnect', function(){
+                    console.log('someone disconnected');
+                });
+            } catch (e) {
+            }
+        });
 }
