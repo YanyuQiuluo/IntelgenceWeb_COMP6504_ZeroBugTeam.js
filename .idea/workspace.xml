@@ -26,6 +26,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Assignment_starting_point" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -39,6 +40,9 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="27e46d13-615a-42ea-88fd-6e2c5fd3da1a" name="Changes" comment="" />
@@ -50,6 +54,7 @@
       <workItem from="1648808895691" duration="12000" />
       <workItem from="1648808913539" duration="596000" />
       <workItem from="1649279075444" duration="1246000" />
+      <workItem from="1652537208860" duration="2000" />
     </task>
     <servers />
   </component>

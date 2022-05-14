@@ -20,7 +20,8 @@ var Story = new Schema({
     auther:{type:String, max:100},
     date:{type:Date, default: Date.now()},
     intro:{type:String, max:100},
-    photo:{type:String}
+    photo:{type:String},
+    base64:{type:String}
 });
 
 var storyModel = mongoose.model('Story', Story);

@@ -1,21 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-// add
-// var fs = require('fs');
+var fs = require('fs');
+var path = require('path');
 var multer = require('multer');
-
-// var createFolder = function(folder){
-//     try{
-//         fs.accessSync(folder);
-//     }catch(e){
-//         fs.mkdirSync(folder);
-//     }
-// };
-
-// var uploadFolder = './public/upload';
-
-// createFolder(uploadFolder);
 
 var storage = multer.diskStorage({
     //设置图片上传后存放的路径(默认放在系统临时文件夹中)
@@ -73,22 +61,8 @@ router
     .get('/uploadimg', function(req, res, next) {
         res.render('uploadimg', { title: 'Upload Your Image' });
     })
-    // .post('/uploadimg', uploadStory.insert);
-    .post('/uploadimg', upload.single('photo'), function(req, res, next){
-
-        Story.create({
-            title: req.body.title,
-            auther: req.body.auther,
-            date: Date.now(),
-            intro: req.body.intro,
-            photo: req.file.originalname
-        }, function(err){
-            if(err){
-                return next(err);
-            }
-            res.redirect('/');
-        });
-    });
+    
+    .post('/uploadimg', upload.single('photo'), uploadStory.insert);
     
 
 module.exports = router;
