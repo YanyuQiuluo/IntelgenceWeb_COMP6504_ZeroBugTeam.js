@@ -60,7 +60,7 @@ h2 span {
     border-color: #0cb4ec;
 }
 
-#imgOne {
+/* #imgOne {
     height: 30px;
     width: 300px;
     cursor: pointer;
@@ -68,14 +68,11 @@ h2 span {
     left: 350px;
     top: 30px;
     opacity: 0;
-}
+} */
 
 #uploadbtn {
     height: 30px;
     width: 300px;
-    /* position: absolute;
-    left: 350px;
-    top: 30px; */
     background: #0cb4ec;
     text-align: center;
     color: #fff;
@@ -83,23 +80,22 @@ h2 span {
     line-height: 30px;
 }
 
-#photo {
+#photo_area {
+    width: 500px;
+    margin-left: 250px;
+}
+
+#photo_show {
     width: 500px;
     height: 300px;
     object-fit: contain;
     display: inline-block;
-    /* position: absolute;
-    top: 100px;
-    left: 250px; */
     border: 1px solid #ddd;
 }
 
 .container #submitbtn {
     width: 300px;
     height: 30px;
-    /* position: absolute;
-    left: 350px;
-    top: 450px; */
     margin-left: 106px;
     background: #0cb4ec;
     text-align: center;
@@ -111,7 +107,7 @@ h2 span {
 }
 
 
-/* #submit {
+#photo {
     width: 300px;
     height: 30px;
     line-height: 27px;
@@ -119,7 +115,7 @@ h2 span {
     text-decoration: none;
     text-align: center;
     margin: 0 0;
-}*/
+}
 
 #submitbtn:hover,
 #uploadbtn:hover {

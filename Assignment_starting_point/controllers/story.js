@@ -1,28 +1,22 @@
 let Story = require('../models/story');
+var Canvas = require('canvas');
+var fs = require("fs");
 
-exports.insert = function (req, res){
-    res.setHeader('Content-Type', 'application/json');
-    let story = req.body;
-    if (story == null) {
-        res.status(403).send('No data sent!')
-    }
+exports.insert = function (req, res, next) {
+        var imgData = fs.readFileSync(req.file.path);
+        var dataBuffer = new Buffer(imgData).toString('base64');
 
-    let newStory = new Story({
-        title: story.title,
-        auther: story.auther,
-        date: Date.now(),
-        intro: story.intro,
-        photo: story.photo
-    });
-
-    console.log('received: ' + newStory);
-
-    newStory.save()
-        .then((results)=>{
-            console.log("object saved: "+ JSON.stringify(results));
-            res.JSON(newStory);
-        })
-        .catch((error)=>{
-            console.log('Could not insert - probably incorrect data! ' + JSON.stringify(error));
-        })
+        Story.create({
+            title: req.body.title,
+            auther: req.body.auther,
+            date: Date.now(),
+            intro: req.body.intro,
+            photo: req.file.originalname,
+            base64: dataBuffer
+        }, function(err){
+            if(err){
+                return next(err);
+            }
+            res.redirect('/');
+        });
 }
