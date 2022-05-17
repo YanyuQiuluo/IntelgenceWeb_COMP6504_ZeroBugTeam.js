@@ -1,5 +1,5 @@
 let Story = require('../models/story');
-var Canvas = require('canvas');
+// var Canvas = require('canvas');
 var fs = require("fs");
 
 exports.insert = function (req, res, next) {
@@ -12,6 +12,7 @@ exports.insert = function (req, res, next) {
             date: Date.now(),
             intro: req.body.intro,
             photo: req.file.originalname,
+            // path: req.file.path,
             base64: dataBuffer
         }, function(err){
             if(err){

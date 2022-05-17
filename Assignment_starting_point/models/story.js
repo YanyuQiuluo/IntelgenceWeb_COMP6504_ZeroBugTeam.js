@@ -21,6 +21,7 @@ var Story = new Schema({
     date:{type:Date, default: Date.now()},
     intro:{type:String, max:100},
     photo:{type:String},
+    // path:{type:String},
     base64:{type:String}
 });
 
