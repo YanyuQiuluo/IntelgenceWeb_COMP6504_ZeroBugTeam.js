@@ -12,6 +12,11 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/javascripts/index.js"></script>
+    <script src="/javascripts/canvas.js"></script>
+    <script src="/javascripts/database.js" type="module"></script>
+    <script src="/javascripts/idb/index.js" type="module"></script>
+    <script src="/javascripts/jquery.min.js"></script>
 
 </head>
 
@@ -26,7 +31,7 @@
         <br>
         <p>Your Photo: 
             <div id="photo_area">
-                <input class="" name="photo" id="photo" type="file" onchange="preImg(this.id,'photo_show');" required />
+                <input class="" name="photo" id="photo" type="file" onchange="preImg(this.id,'photo_show'),uploadindex();" required />
                 <img id="photo_show" src="" />
             </div>
         </p>

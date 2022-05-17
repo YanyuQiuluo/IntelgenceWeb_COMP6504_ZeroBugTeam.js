@@ -24,19 +24,24 @@ function initChatSocket() {
         if (userId === name) {
             // it enters the chat
             hideLoginInterface(room, userId);
+            //
+            getCachedData(userId).then(r => console.log('Successful'));
         } else {
             // notifies that someone has joined the room
             writeOnHistory('<b>' + userId + '</b>' + ' joined room ' + room);
         }
-    });
+    })};
     // called when a message is received
     chat.on('chat', function (room, userId, chatText) {
         let who = userId
         if (userId === name) who = 'Me';
         writeOnHistory('<b>' + who + ':</b> ' + chatText);
-    });
 
-}
+        storeCachedData({userId: userId, chatText: chatText,room:room})
+            .then (r =>console.log('successful') )
+            .catch(error=>console.log())
+    })
+
 
 /**
  * called to generate a random room number

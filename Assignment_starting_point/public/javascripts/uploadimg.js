@@ -18,3 +18,20 @@ function preImg(sourceId, targetId) {
     var imgPre = document.getElementById(targetId);
     imgPre.src = url;
 }
+
+/**
+ upload in index
+ */
+function uploadindex(){
+    console.log("生成报告123");
+    let formArray = $("form").serializeArray();
+    var story={};
+    for (let index in formArray){
+        story[formArray[index].name] = formArray[index].value;
+    }
+
+    storeImage({title:story.title,auther:story.auther,intro:story.intro})
+        .then(r =>console.log('Successful'))
+        .catch();
+    event.preventDefault();
+}
