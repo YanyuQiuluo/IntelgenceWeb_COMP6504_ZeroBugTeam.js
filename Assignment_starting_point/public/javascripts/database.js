@@ -7,6 +7,7 @@ let db;
 const Chatroom_DB_NAME= 'db_story';
 const Chatroom_STORE_NAME= 'Story';
 const Upload_IMAGE_NAME='Upload';
+const Lecture_NAME='lecture';
 
 /**
  * it inits the database
@@ -28,6 +29,13 @@ async function initDatabase(){
                         autoIncrement: true
                     });
                     forecastDB.createIndex('Title', 'Title', {unique: false, multiEntry: true});
+                }
+                if (!upgradeDb.objectStoreNames.contains(Lecture_NAME)) {
+                    let forecastDB = upgradeDb.createObjectStore(Lecture_NAME, {
+                        keyPath: 'ID',
+                        autoIncrement: true
+                    });
+                    forecastDB.createIndex('ID', 'ID', {unique: false, multiEntry: true});
                 }
             }
         });
@@ -85,7 +93,7 @@ window.storeImage= storeImage;
 
 
 /**
- *
+ * Get history chatText
  * @param city
  * @param date
  * @returns {Promise<*[]>}
@@ -114,3 +122,28 @@ async function getCachedData(a) {
     }
 }
 window.getCachedData= getCachedData;
+
+
+/**
+ * store Lecture in indexDB
+ * @param Object
+ * @returns {Promise<void>}
+ */
+async function storeLecture(Object) {
+    console.log('inserting: '+JSON.stringify(Object));
+    if (!db)
+        await (initDatabase());
+    if (db) {
+        //try{
+            let tx = await db.transaction(Lecture_NAME, 'readwrite');
+            let store = await tx.objectStore(Lecture_NAME);
+            await store.put(Object);
+            await  tx.complete;
+            console.log('added item to the store! '+ JSON.stringify(Object));
+        //} catch(error) {
+        //    localStorage.setItem(Object, JSON.stringify(Object));
+      //  };
+    }
+    else localStorage.setItem(Object, JSON.stringify(Object));
+}
+window.storeLecture= storeLecture;
