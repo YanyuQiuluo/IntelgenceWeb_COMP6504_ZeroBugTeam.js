@@ -17,11 +17,10 @@ var Schema = mongoose.Schema;
 
 var Story = new Schema({
     title:{type:String, max:100},
-    auther:{type:String, max:100},
-    date:{type:Date, default: Date.now()},
+    author:{type:String, max:100},
+    date:{type:String, default: Date.now()},
     intro:{type:String, max:100},
     photo:{type:String},
-    // path:{type:String},
     base64:{type:String}
 });
 
