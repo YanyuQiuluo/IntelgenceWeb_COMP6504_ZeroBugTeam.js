@@ -1,6 +1,7 @@
 let Story = require('../models/story');
 // var Canvas = require('canvas');
 var fs = require("fs");
+var moment = require("moment");
 
 exports.insert = function (req, res, next) {
         var imgData = fs.readFileSync(req.file.path);
@@ -8,11 +9,10 @@ exports.insert = function (req, res, next) {
 
         Story.create({
             title: req.body.title,
-            auther: req.body.auther,
-            date: Date.now(),
+            author: req.body.author,
+            date: moment(Date.now()).format('DD-MM-YYYY HH:mm:ss'),
             intro: req.body.intro,
             photo: req.file.originalname,
-            // path: req.file.path,
             base64: dataBuffer
         }, function(err){
             if(err){

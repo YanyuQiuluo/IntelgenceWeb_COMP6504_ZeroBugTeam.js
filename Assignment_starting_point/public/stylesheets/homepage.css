@@ -13,10 +13,39 @@ h2 span {
     padding: 0 20px;
 }
 
+.sortSection {
+    width: 1000px;
+    height: auto;
+    margin: 30px auto;
+    position: relative;
+}
+
+.sortSection .sortSelect {
+    position: absolute;
+    right: 0px;
+}
+
+#sort {
+    width: 100px;
+    font-weight: bold;
+}
+
+#sortType {
+    width: 300px;
+    margin-left: 30px;
+}
+
+select {
+    border-radius: 5px;
+    border-color: #ddd;
+    text-indent: 1em;
+}
+
 .container {
     width: 1000px;
     height: auto;
     margin: 20px auto;
+    margin-top: 160px;
     box-shadow: 0px 9px 24px 5px rgba(0, 0, 0, 0.04);
     padding: 60px 60px;
 }
