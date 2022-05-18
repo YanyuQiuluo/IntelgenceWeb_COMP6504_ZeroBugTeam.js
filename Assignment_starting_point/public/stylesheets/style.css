@@ -1,5 +1,96 @@
-body {
-  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  margin: 60px 100px;
+  padding-top: 60px;
+  height: 20px;
+}
+
+h1 span {
+  background: #fff;
+  padding: 0 20px;
+}
+
+.container p {
+  margin-left: 20%;
+  margin-right: 20%;
+  line-height: 4em;
+  font-weight: bold;
+  position: relative;
+}
+
+.container {
+  width: 1000px;
+  height: auto;
+  margin: 40px auto;
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0px 9px 24px 5px rgba(0, 0, 0, 0.04);
+}
+
+.container p:nth-last-child(1){
+  padding-bottom: 60px;
+}
+
+input {
+  height: 16px;
+  width: 340px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  text-indent: 0.5em;
+}
+
+.container input {
+  position: absolute;
+  left: 130px;
+  top: 20px;
+}
+
+input:hover {
+  outline: none;
+  border-color: #00a1d6;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0cb4ec;
+}
+
+button {
+    background: #0cb4ec;
+    text-align: center;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    line-height: 20px;
+    width: 120px;
+    height: 20px;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #42c6f1;
+    cursor: pointer;
+} 
+
+#roomNoGenerator {
+  margin: auto 0;
+  position: absolute;
+  right: 0px;
+  top: 19px;
+}
+
+#connect {
+  width: 300px;
+  margin-left: 350px;
+  margin-top: 20px;
+  margin-bottom: 60px;
 }
 
 a {
