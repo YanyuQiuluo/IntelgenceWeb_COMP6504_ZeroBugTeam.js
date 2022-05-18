@@ -11,21 +11,27 @@
     <script src="/javascripts/app.js"></script>
     <script src="/javascripts/idb/index.js" type="module"></script>
 </head>
+
+
 <body onload="init(), initDatabase()">
 <div id="initial_form" style="display: block">
-    <h1><%= title %></h1>
-    <p>Please insert the id of the Room you want to Join, if you do not have a room id, click Generate Room</p>
-    <form onsubmit="return false;">
+    
+    <form class="container" onsubmit="return false;">
+        <h1><span><%= title %></span></h1>
+        <p style="text-align: center; color: #999; font-size: 0.7em;">
+            Please insert the id of the Room you want to Join, if you do not have a room id, click Generate Room
+        </p>
+
         <p><label for="name"> Your name </label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="name" style="width: 464px;">
         </p>
         <p>
             <label for="roomNo"> Your room </label>
             <input type="text" id="roomNo" name="roomNo">
-            <button id="roomNoGenerator" onclick="generateRoom()">Generate Room</button>
+            <button class="roombtn" id="roomNoGenerator" onclick="generateRoom()">Generate Room</button>
         </p>
-        <p style=" width: 100%"><label for="image_url"> Image (URL) </label><input type="text" id="image_url" name="image_url"></p>
-        <button id="connect" onclick="connectToRoom()">Connect</button>
+        <p style=" width: 100%"><label for="image_url"> Image (URL) </label><input type="text" id="image_url" name="image_url" style="width: 464px;"></p>
+        <button class="roombtn" id="connect" onclick="connectToRoom()">Connect</button>
     </form>
 </div>
 <div id="chat_interface" style="display: none">
@@ -36,7 +42,7 @@
     <div style="width: 100%; height: 50vh">
             <img id="image" height="100%" >
             <canvas  id="canvas" ></canvas>
-            <button id="canvas-clear"class="canvas-clear">Clear</button>
+            <button id="canvas-clear"class="canvas-clear">Clear Mark</button>
     </div>
 <!--    </div>-->
     <div id="history" style="height: 35vh" class="boxed scrolling" ></div>
@@ -44,8 +50,8 @@
         <form onsubmit="return false;" style="width: 100%">
             <p>
                 <label for="name"> chat: </label>
-                <input type="text" id="chat_input" name="chat_input" style="width: 80%">
-                <button id="chat_send" onclick="sendChatText()">Send</button>
+                <input type="text" id="chat_input" name="chat_input" style="width: 80%; top: 22px;">
+                <button id="chat_send" onclick="sendChatText()" style="width: 80px;">Send</button>
             </p>
         </form>
     </div>
