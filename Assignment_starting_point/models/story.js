@@ -14,13 +14,14 @@ connection = mongoose.connect(mongoDB, {
     });
 
 var Schema = mongoose.Schema;
+const required = true;
 
 var Story = new Schema({
     title:{type:String, max:100},
-    author:{type:String, max:100},
+    author:{type:String, max:100, required},
     date:{type:String, default: Date.now()},
     intro:{type:String, max:100},
-    photo:{type:String},
+    photo:{type:String, required},
     base64:{type:String}
 });
 
