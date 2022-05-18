@@ -5,8 +5,8 @@ import * as idb from './idb/index.js';
 let db;
 
 const Chatroom_DB_NAME= 'db_story';
-const Chatroom_STORE_NAME= 'Story';
-const Upload_IMAGE_NAME='Upload';
+const Chatroom_STORE_NAME= 'Chatroom';
+const Upload_IMAGE_NAME='Story';
 const Lecture_NAME='lecture';
 
 /**
@@ -35,8 +35,9 @@ async function initDatabase(){
                         keyPath: 'ID',
                         autoIncrement: true
                     });
-                    forecastDB.createIndex('ID', 'ID', {unique: false, multiEntry: true});
+                    forecastDB.createIndex('userId', 'userId', {unique: false, multiEntry: true});
                 }
+
             }
         });
         console.log('db created');
@@ -147,3 +148,41 @@ async function storeLecture(Object) {
     else localStorage.setItem(Object, JSON.stringify(Object));
 }
 window.storeLecture= storeLecture;
+
+
+/**
+ * get indexDB
+ * @param a
+ * @returns {Promise<void>}
+ */
+async function getLecture(a,imageUrl) {
+    if (!db)
+        await initDatabase();
+    if (db) {
+        //try {
+            console.log('fetching: ');
+            let tx = await db.transaction(Lecture_NAME, 'readonly');
+            let store = await tx.objectStore(Lecture_NAME);
+            let index = await store.index('userId');
+            let readingsList = await index.getAll(IDBKeyRange.only(a));
+            await tx.complete;
+
+            //let cvx=document.getElementById('canvas')
+           // let ctx=cvx.getContext('2d')
+              let canvas = $('#canvas');
+              let ctx = canvas[0].getContext('2d');
+            for (let l of readingsList) {
+                console.log(ctx,l.width,l.height,l.prevX,l.prevY,l.currX,l.currY,l.color,l.thickness,l.imageUrl)
+                if(imageUrl===l.imageUrl){
+                    drawOnCanvas(ctx,l.width,l.height,l.prevX,l.prevY,l.currX,l.currY,l.color,l.thickness)
+
+                }
+            }
+       // } catch (error) {
+        //    console.log(error);
+        }
+
+
+}
+window.getLecture= getLecture;
+

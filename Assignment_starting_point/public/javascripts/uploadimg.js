@@ -30,7 +30,7 @@ function uploadindex(){
         story[formArray[index].name] = formArray[index].value;
     }
 
-    storeImage({title:story.title,auther:story.auther,intro:story.intro})
+    storeImage({title:story.title,author:story.author,intro:story.intro})
         .then(r =>console.log('Successful'))
         .catch();
     event.preventDefault();

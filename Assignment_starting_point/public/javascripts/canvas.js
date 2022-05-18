@@ -3,6 +3,7 @@
  */
 let room;
 let userId;
+//let imgeUrl;
 let color = 'red', thickness = 4;
 
 /**
@@ -13,6 +14,7 @@ let color = 'red', thickness = 4;
  */
 function initCanvas(sckt, imageUrl, roomNo, name) {
     socket = sckt;
+    //imgeUrl=imageUrl;
     let flag = false,
         prevX, prevY, currX, currY = 0;
     let canvas = $('#canvas');
@@ -47,7 +49,19 @@ function initCanvas(sckt, imageUrl, roomNo, name) {
                 // room, userId, canvas.width, canvas.height, prevX, prevY, currX, currY, color, thickness
                 socket.emit('finish',room, imageUrl, userId, canvas.width, canvas.height, prevX, prevY, currX, currY, color, thickness);
                 //
-
+                storeLecture({
+                    room:room,
+                    imageUrl:imageUrl,
+                    userId:userId,
+                    width:canvas.width,
+                    height:canvas.height,
+                    prevX: prevX,
+                    prevY: prevY,
+                    currX: currX,
+                    currY: currY,
+                    color: color,
+                    thickness: thickness
+                }).then(r =>console.log('Successful'))
             }
         }
     });
@@ -78,22 +92,13 @@ function initCanvas(sckt, imageUrl, roomNo, name) {
     //     let ctx = canvas[0].getContext('2d');
     //     drawOnCanvas(ctx, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness)
     socket.on('draw',function (room, imageUrl, userId, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness){
+       // let canvas = $('#canvas');
+       // let cvx = document.getElementById('canvas');
+       // let ctx = canvas[0].getContext('2d');
         let ctx = canvas[0].getContext('2d');
         drawOnCanvas(ctx, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness);
 
-        storeLecture({
-            room:room,
-            imageUrl:imageUrl,
-            userId:userId,
-            width:canvas.width,
-            height:canvas.height,
-            prevX: prevX,
-            prevY: prevY,
-            currX: currX,
-            currY: currY,
-            color: color,
-            thickness: thickness
-        }).then(r =>console.log('Successful'))
+
     });
     //
 
@@ -119,6 +124,16 @@ function initCanvas(sckt, imageUrl, roomNo, name) {
                 cvx.width = canvas.width = img.clientWidth*ratio;
                 cvx.height = canvas.height = img.clientHeight*ratio;
                 // draw the image onto the canvas
+
+                if(name===userId){
+                    drawOnCanvas(ctx,cvx,img)
+                    getLecture(userId,imageUrl)
+                        .then(r => console.log('Successful'))
+                        .catch(error => console.log('error'))
+                }
+                else {
+                    drawImageScaled(img,cvx,ctx)
+                }
                 drawImageScaled(img, cvx, ctx);
                 // hide the image element as it is not needed
                 img.style.display = 'none';
@@ -177,6 +192,3 @@ function drawOnCanvas(ctx, canvasWidth, canvasHeight, prevX, prevY, currX, currY
     ctx.closePath();
 }
 
-function Annotation_start(){
-    ctx;
-}
