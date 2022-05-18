@@ -2,6 +2,8 @@ let name = null;
 let roomNo = null;
 let socket=io.connect('/canvas');
 let chat= io.connect('/chat');
+const service_url = 'https://kgsearch.googleapis.com/v1/entities:search';
+const apiKey= 'AIzaSyAG7w627q-djB4gTTahssufwNOImRqdYKM';
 
 
 /**
@@ -73,7 +75,7 @@ function connectToRoom() {
     let imageUrl= document.getElementById('image_url').value;
     if (!name) name = 'Unknown-' + Math.random();
     //@todo join the room
-    initCanvas(socket, imageUrl);
+    initCanvas(socket, imageUrl, roomNo, name);
     hideLoginInterface(roomNo, name);
 
     chat.emit('create or join', roomNo, name);
@@ -106,4 +108,73 @@ function hideLoginInterface(room, userId) {
     document.getElementById('who_you_are').innerHTML= userId;
     document.getElementById('in_room').innerHTML= ' '+room;
 }
+
+
+function widgetInit(){
+    let type= document.getElementById("myType").value;
+    if (type) {
+        let config = {
+            'limit': 10,
+            'languages': ['en'],
+            'types': [type],
+            'maxDescChars': 100,
+            'selectHandler': selectItem,
+        }
+
+        KGSearchWidget(apiKey, document.getElementById("myInput"), config);
+        document.getElementById('typeSet').innerHTML= 'of type: '+type;
+        document.getElementById('widget').style.display='block';
+        document.getElementById('typeForm').style.display= 'none';
+    }
+    else {
+        alert('Set the type please');
+        document.getElementById('widget').style.display='none';
+        document.getElementById('resultPanel').style.display='none';
+        document.getElementById('typeSet').innerHTML= '';
+        document.getElementById('typeForm').style.display= 'block';
+    }
+}
+
+/**
+ * callback called when an element in the widget is selected
+ * @param event the Google Graph widget event {@link https://developers.google.com/knowledge-graph/how-tos/search-widget}
+ */
+function selectItem(event){
+    let row= event.row;
+    // document.getElementById('resultImage').src= row.json.image.url;
+    document.getElementById('resultId').innerText= 'id: '+row.id;
+    document.getElementById('resultName').innerText= row.name;
+    document.getElementById('resultDescription').innerText= row.rc;
+    document.getElementById("resultUrl").href= row.qc;
+    document.getElementById('resultPanel').style.display= 'block';
+}
+
+function knowledge_graph_flash(){
+    document.getElementById('widget').style.display='none';
+    document.getElementById('resultPanel').style.display='none';
+    document.getElementById('typeSet').innerHTML= '';
+    document.getElementById('typeForm').style.display= 'block';
+    document.getElementById('myInput').value = '';
+    document.getElementById('myType').value = '';
+}
+
+
+
+
+function queryMainEntity(id, type){
+    const  params = {
+        'query': mainEntityName,
+        'types': type,
+        'limit': 10,
+        'indent': true,
+        'key' : apiKey,
+    };
+    $.getJSON(service_url + '?callback=?', params, function(response) {
+        $.each(response.itemListElement, function (i, element) {
+
+            $('<div>', {text: element['result']['name']}).appendTo(document.body);
+        });
+    });
+}
+
 

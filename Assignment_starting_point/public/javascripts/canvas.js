@@ -3,6 +3,7 @@
  */
 let room;
 let userId;
+//let imgeUrl;
 let color = 'red', thickness = 4;
 
 /**
@@ -11,8 +12,9 @@ let color = 'red', thickness = 4;
  * @param sckt the open socket to register events on
  * @param imageUrl teh image url to download
  */
-function initCanvas(sckt, imageUrl) {
+function initCanvas(sckt, imageUrl, roomNo, name) {
     socket = sckt;
+    //imgeUrl=imageUrl;
     let flag = false,
         prevX, prevY, currX, currY = 0;
     let canvas = $('#canvas');
@@ -20,6 +22,8 @@ function initCanvas(sckt, imageUrl) {
     let img = document.getElementById('image');
     let ctx = cvx.getContext('2d');
     img.src = imageUrl;
+    room = roomNo;
+    userId = name;
 
     // event on the canvas when the mouse is on it
     canvas.on('mousemove mousedown mouseup mouseout', function (e) {
@@ -39,12 +43,15 @@ function initCanvas(sckt, imageUrl) {
                 drawOnCanvas(ctx, canvas.width, canvas.height, prevX, prevY, currX, currY, color, thickness);
                 //
 
+
+
                 // @todo if you draw on the canvas, you may want to let everyone know via socket.io (socket.emit...)  by sending them
                 // room, userId, canvas.width, canvas.height, prevX, prevY, currX, currY, color, thickness
-                socket.emit('finish',room, userId, canvas.width, canvas.height, prevX, prevY, currX, currY, color, thickness);
+                socket.emit('finish',room, imageUrl, userId, canvas.width, canvas.height, prevX, prevY, currX, currY, color, thickness);
                 //
                 storeLecture({
                     room:room,
+                    imageUrl:imageUrl,
                     userId:userId,
                     width:canvas.width,
                     height:canvas.height,
@@ -84,9 +91,14 @@ function initCanvas(sckt, imageUrl) {
     // and then you call
     //     let ctx = canvas[0].getContext('2d');
     //     drawOnCanvas(ctx, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness)
-    socket.on('draw',function (userId, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness){
+    socket.on('draw',function (room, imageUrl, userId, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness){
+       // let canvas = $('#canvas');
+       // let cvx = document.getElementById('canvas');
+       // let ctx = canvas[0].getContext('2d');
         let ctx = canvas[0].getContext('2d');
         drawOnCanvas(ctx, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness);
+
+
     });
     //
 
@@ -112,6 +124,16 @@ function initCanvas(sckt, imageUrl) {
                 cvx.width = canvas.width = img.clientWidth*ratio;
                 cvx.height = canvas.height = img.clientHeight*ratio;
                 // draw the image onto the canvas
+
+                if(name===userId){
+                    drawOnCanvas(ctx,cvx,img)
+                    getLecture(userId,imageUrl)
+                        .then(r => console.log('Successful'))
+                        .catch(error => console.log('error'))
+                }
+                else {
+                    drawImageScaled(img,cvx,ctx)
+                }
                 drawImageScaled(img, cvx, ctx);
                 // hide the image element as it is not needed
                 img.style.display = 'none';
@@ -135,8 +157,6 @@ function drawImageScaled(img, canvas, ctx) {
     let x = (canvas.width / 2) - (img.width / 2) * scale;
     let y = (canvas.height / 2) - (img.height / 2) * scale;
     ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-
-
 }
 
 
@@ -171,3 +191,4 @@ function drawOnCanvas(ctx, canvasWidth, canvasHeight, prevX, prevY, currX, currY
     ctx.stroke();
     ctx.closePath();
 }
+

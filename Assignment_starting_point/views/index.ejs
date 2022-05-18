@@ -10,6 +10,13 @@
     <script src="/javascripts/database.js" type="module"></script>
     <script src="/javascripts/app.js"></script>
     <script src="/javascripts/idb/index.js" type="module"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/knowledge/kgsearch/widget/1.0/widget.min.css">
+    <script type="text/javascript" src="https://www.gstatic.com/knowledge/kgsearch/widget/1.0/widget.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script type="application/javascript" src="/javascripts/index.js"></script>
 </head>
 
 
@@ -45,6 +52,42 @@
             <button id="canvas-clear"class="canvas-clear">Clear Mark</button>
     </div>
 
+
+    <h1>Search the Knowledge Graph</h1>
+    <div class="myRow" id="typeForm">
+        <label for="myType">Type: </label><input type="text" id="myType">
+        <button onclick="widgetInit()">Set type</button>
+    </div>
+    <div class="myRow" id='widget' style="display: none">
+<!--        style="display: none"-->
+        <label for="myInput">Search for: </label><input type="text" id="myInput">
+        <div class="myRow" id="typeSet"></div>
+    </div>
+    <div class="myRow" id='flash'>
+        <button id="chat_send" onclick="knowledge_graph_flash()">Flash</button>
+    </div>
+    <div>
+        <div class='resultPanel' id="resultPanel" style="display: none">
+            <h3 id="resultName"></h3>
+            <h4 id="resultId"></h4>
+            <div id="resultDescription"></div>
+            <div>
+                <a id="resultUrl" target="_blank">
+                    Link to Webpage
+                </a>
+            </div>
+            <div class="myRow" id='Annotation'>
+                <button id="chat_send" onclick="Annotation_start()">Annotate on canvas</button>
+            </div>
+            <div class="myRow" id='Annotation_finish' style="display: none">
+                <button id="chat_send" onclick="Annotation_finish()">Annotation Finished</button>
+            </div>
+        </div>
+    </div>
+
+
+
+<!--    </div>-->
     <div id="history" style="height: 35vh" class="boxed scrolling" ></div>
     <div id="input" style="height: 5vh" class=" boxed">
         <form onsubmit="return false;" style="width: 100%">

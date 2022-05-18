@@ -33,9 +33,10 @@ exports.init = function(io) {
                 /**
                  * it creates or joins a room
                  */
-                socket.on('finish', function (room, userId, width, height, prevX, prevY, currX, currY, color, thickness) {
+                socket.on('finish', function (room, imageUrl, userId, width, height, prevX, prevY, currX, currY, color, thickness) {
                     socket.join(room);
-                    canvas.to(room).emit('draw', userId, width, height, prevX, prevY, currX, currY, color, thickness);
+                    console.log(room);
+                    canvas.to(room).emit('draw',room, imageUrl, userId, width, height, prevX, prevY, currX, currY, color, thickness);
                 });
 
                 socket.on('clear', function (room, c_width, c_height) {
