@@ -156,6 +156,8 @@ function widgetInit(){
  */
 function selectItem(event){
     let row= event.row;
+    console.log(row);
+    console.log(typeof (row.json));
     let imageUrl= document.getElementById('image_url').value;
     let color = $('input:radio[name="color"]:checked').val();
     socket_KG.emit('kg_emit', room, imageUrl, row, color);
