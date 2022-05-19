@@ -13,7 +13,7 @@ let thickness = 4;
  * @param imageUrl teh image url to download
  */
 function initCanvas(sckt, imageUrl, roomNo, name) {
-    socket = sckt;
+    socket_canvas = sckt;
     //imgeUrl=imageUrl;
     let flag = false,
         prevX, prevY, currX, currY = 0;
@@ -48,7 +48,7 @@ function initCanvas(sckt, imageUrl, roomNo, name) {
 
                 // @todo if you draw on the canvas, you may want to let everyone know via socket.io (socket.emit...)  by sending them
                 // room, userId, canvas.width, canvas.height, prevX, prevY, currX, currY, color, thickness
-                socket.emit('finish',room, imageUrl, userId, canvas.width, canvas.height, prevX, prevY, currX, currY, color, thickness);
+                socket_canvas.emit('finish',room, imageUrl, userId, canvas.width, canvas.height, prevX, prevY, currX, currY, color, thickness);
                 //
                 storeLecture({
                     room:room,
@@ -75,11 +75,11 @@ function initCanvas(sckt, imageUrl, roomNo, name) {
         ctx.clearRect(0, 0, c_width, c_height);
         console.log(ctx)
         // @todo if you clear the canvas, you want to let everyone know via socket.io (socket.emit...)
-        socket.emit('clear',room, c_width, c_height);
+        socket_canvas.emit('clear',room, c_width, c_height);
 
     });
 
-    socket.on('cleanup',function (c_width, c_height){
+    socket_canvas.on('cleanup',function (c_width, c_height){
         console.log(ctx);
         ctx.clearRect(0, 0, c_width, c_height);
         //img.addEventListener();
@@ -87,12 +87,15 @@ function initCanvas(sckt, imageUrl, roomNo, name) {
     });
 
 
+
+
+
     // @todo here you want to capture the event on the socket when someone else is drawing on their canvas (socket.on...)
     // I suggest that you receive userId, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness
     // and then you call
     //     let ctx = canvas[0].getContext('2d');
     //     drawOnCanvas(ctx, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness)
-    socket.on('draw',function (room, imageUrl, userId, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness){
+    socket_canvas.on('draw',function (room, imageUrl, userId, canvasWidth, canvasHeight, x1, y21, x2, y2, color, thickness){
        // let canvas = $('#canvas');
        // let cvx = document.getElementById('canvas');
        // let ctx = canvas[0].getContext('2d');
@@ -192,6 +195,5 @@ function drawOnCanvas(ctx, canvasWidth, canvasHeight, prevX, prevY, currX, currY
     ctx.stroke();
     ctx.closePath();
 }
-
 
 

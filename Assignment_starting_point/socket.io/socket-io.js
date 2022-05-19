@@ -59,9 +59,10 @@ exports.init = function(io) {
                 /**
                  * it creates or joins a room
                  */
-                socket.on('kg_emit', function (room, imageUrl, userId, row) {
+                socket.on('kg_emit', function (room, imageUrl, row, color) {
+                    console.log(room);
                     socket.join(room);
-                    canvas.to(room).emit('kg_on',room, imageUrl, userId, row);
+                    KG.emit('kg_on',room, imageUrl, row, color);
                 });
 
                 socket.on('disconnect', function(){

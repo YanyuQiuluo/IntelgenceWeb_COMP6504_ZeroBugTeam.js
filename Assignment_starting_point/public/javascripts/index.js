@@ -19,7 +19,15 @@ function init() {
 
     //@todo here is where you should initialise the socket operations as described in teh lectures (room joining, chat message receipt etc.)
     initChatSocket();
+    initKGSocket();
 }
+function initKGSocket() {
+    socket_KG.on('kg_on',function (room, imageUrl, row, color){
+        showKgList(row, color);
+        console.log("12345678");
+    })
+};
+
 
 function initChatSocket() {
     // called when someone joins the room. If it is someone else it notifies the joining of the room
@@ -33,7 +41,11 @@ function initChatSocket() {
             // notifies that someone has joined the room
             writeOnHistory('<b>' + userId + '</b>' + ' joined room ' + room);
         }
-    })};
+    });
+
+
+
+};
     // called when a message is received
     socket_chat.on('chat', function (room, userId, chatText) {
         let who = userId
@@ -44,6 +56,8 @@ function initChatSocket() {
             .then (r =>console.log('successful') )
             .catch(error=>console.log())
     })
+
+
 
 
 /**
@@ -130,7 +144,7 @@ function widgetInit(){
     else {
         alert('Set the type please');
         document.getElementById('widget').style.display='none';
-        document.getElementById('resultPanel').style.display='none';
+        //document.getElementById('resultPanel').style.display='none';
         document.getElementById('typeSet').innerHTML= '';
         document.getElementById('typeForm').style.display= 'block';
     }
@@ -142,22 +156,11 @@ function widgetInit(){
  */
 function selectItem(event){
     let row= event.row;
-    showKgList(row);
     let imageUrl= document.getElementById('image_url').value;
-    socket_KG.emit('kg_emit', room, imageUrl, userId, row);
+    let color = $('input:radio[name="color"]:checked').val();
+    socket_KG.emit('kg_emit', room, imageUrl, row, color);
+    console.log("======================");
 }
-
-socket_KG.on('kg_on',function (room, imageUrl, userId, row){
-    showKgList(row);
-});
-
-
-
-
-
-
-
-
 
 function knowledge_graph_flash(){
     document.getElementById('widget').style.display='none';
@@ -168,8 +171,7 @@ function knowledge_graph_flash(){
     document.getElementById('myType').value = '';
 }
 
-function showKgList(row){
-    let color = $('input:radio[name="color"]:checked').val();
+function showKgList(row, color){
     $('#kg-list').append(
         $(`
         <div class="result-body" style = "border-style: solid; border-color: ${color}">
@@ -184,22 +186,4 @@ function showKgList(row){
         </div>
     `)
     )
-}
-
-
-
-function queryMainEntity(id, type){
-    const  params = {
-        'query': mainEntityName,
-        'types': type,
-        'limit': 10,
-        'indent': true,
-        'key' : apiKey,
-    };
-    $.getJSON(service_url + '?callback=?', params, function(response) {
-        $.each(response.itemListElement, function (i, element) {
-
-            $('<div>', {text: element['result']['name']}).appendTo(document.body);
-        });
-    });
 }
