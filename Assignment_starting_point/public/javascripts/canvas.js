@@ -4,7 +4,7 @@
 let room;
 let userId;
 //let imgeUrl;
-let color = 'red', thickness = 4;
+let thickness = 4;
 
 /**
  * it inits the image canvas to draw on. It sets up the events to respond to (click, mouse on, etc.)
@@ -31,6 +31,7 @@ function initCanvas(sckt, imageUrl, roomNo, name) {
         prevY = currY;
         currX = e.clientX - canvas.position().left;
         currY = e.clientY - canvas.position().top;
+        let color = $('input:radio[name="color"]:checked').val();
         if (e.type === 'mousedown') {
             flag = true;
         }
@@ -191,4 +192,6 @@ function drawOnCanvas(ctx, canvasWidth, canvasHeight, prevX, prevY, currX, currY
     ctx.stroke();
     ctx.closePath();
 }
+
+
 

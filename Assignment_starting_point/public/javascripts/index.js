@@ -1,7 +1,8 @@
 let name = null;
 let roomNo = null;
-let socket=io.connect('/canvas');
-let chat= io.connect('/chat');
+let socket_canvas=io.connect('/canvas');
+let socket_chat= io.connect('/chat');
+let socket_KG= io.connect('/KG');
 const service_url = 'https://kgsearch.googleapis.com/v1/entities:search';
 const apiKey= 'AIzaSyAG7w627q-djB4gTTahssufwNOImRqdYKM';
 
@@ -22,7 +23,7 @@ function init() {
 
 function initChatSocket() {
     // called when someone joins the room. If it is someone else it notifies the joining of the room
-    chat.on('joined', function (room, userId) {
+    socket_chat.on('joined', function (room, userId) {
         if (userId === name) {
             // it enters the chat
             hideLoginInterface(room, userId);
@@ -34,7 +35,7 @@ function initChatSocket() {
         }
     })};
     // called when a message is received
-    chat.on('chat', function (room, userId, chatText) {
+    socket_chat.on('chat', function (room, userId, chatText) {
         let who = userId
         if (userId === name) who = 'Me';
         writeOnHistory('<b>' + who + ':</b> ' + chatText);
@@ -62,7 +63,7 @@ function generateRoom() {
 function sendChatText() {
     let chatText = document.getElementById('chat_input').value;
     // @todo send the chat message
-    chat.emit('chat', roomNo, name, chatText);
+    socket_chat.emit('chat', roomNo, name, chatText);
 }
 
 /**
@@ -75,10 +76,10 @@ function connectToRoom() {
     let imageUrl= document.getElementById('image_url').value;
     if (!name) name = 'Unknown-' + Math.random();
     //@todo join the room
-    initCanvas(socket, imageUrl, roomNo, name);
+    initCanvas(socket_canvas, imageUrl, roomNo, name);
     hideLoginInterface(roomNo, name);
 
-    chat.emit('create or join', roomNo, name);
+    socket_chat.emit('create or join', roomNo, name);
 }
 
 /**
@@ -141,23 +142,49 @@ function widgetInit(){
  */
 function selectItem(event){
     let row= event.row;
-    // document.getElementById('resultImage').src= row.json.image.url;
-    document.getElementById('resultId').innerText= 'id: '+row.id;
-    document.getElementById('resultName').innerText= row.name;
-    document.getElementById('resultDescription').innerText= row.rc;
-    document.getElementById("resultUrl").href= row.qc;
-    document.getElementById('resultPanel').style.display= 'block';
+    showKgList(row);
+    let imageUrl= document.getElementById('image_url').value;
+    socket_KG.emit('kg_emit', room, imageUrl, userId, row);
 }
+
+socket_KG.on('kg_on',function (room, imageUrl, userId, row){
+    showKgList(row);
+});
+
+
+
+
+
+
+
+
 
 function knowledge_graph_flash(){
     document.getElementById('widget').style.display='none';
-    document.getElementById('resultPanel').style.display='none';
+    //document.getElementById('resultPanel').style.display='none';
     document.getElementById('typeSet').innerHTML= '';
     document.getElementById('typeForm').style.display= 'block';
     document.getElementById('myInput').value = '';
     document.getElementById('myType').value = '';
 }
 
+function showKgList(row){
+    let color = $('input:radio[name="color"]:checked').val();
+    $('#kg-list').append(
+        $(`
+        <div class="result-body" style = "border-style: solid; border-color: ${color}">
+          <h3>${row.name}</h3>
+          <h4>${row.description}</h4>
+          <div>${row.rc}</div>
+          <div>
+            <a href="${row.qc}" target="_blank">
+              Link to Webpage
+            </a>
+          </div>
+        </div>
+    `)
+    )
+}
 
 
 
@@ -176,5 +203,3 @@ function queryMainEntity(id, type){
         });
     });
 }
-
-

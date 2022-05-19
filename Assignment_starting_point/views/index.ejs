@@ -54,6 +54,8 @@
             <div id="who_you_are" style="display: inline" style="height: 10vh"></div>, you are in room: <div
                 id="in_room" style="display: inline"></div>
         </div>
+
+
         <!-- </p> -->
         <div style="width: 50%; height: 50vh;">
             <img id="image" height="100%" width="auto">
@@ -66,6 +68,22 @@
             <h2>
                 <span>Search the Knowledge Graph</span>
             </h2>
+
+            <form id="color_selector" action="" method="get">
+                Please select the color：
+                <br>
+                <br>
+                <label>
+                    <input type="radio" name="color" value='red' checked>red</label>
+                <label>
+                    <input type="radio" name="color" value='blue'>blue</label>
+                <label>
+                    <input type="radio" name="color" value='green'>green</label>
+                <label>
+                    <input type="radio" name="color" value='yellow'>yellow</label>
+                <label>
+                    <input type="radio" name="color" value='white'>white</label>
+            </form>
 
             <div class="myRow" id="typeForm">
                 <label for="myType" style="margin-left: 80px;">Type: </label>
@@ -82,21 +100,7 @@
                 <button id="chat_send" onclick="knowledge_graph_flash()">Flash</button>
             </div>
             <div>
-                <div class='resultPanel' id="resultPanel" style="display: none; padding: 40px;">
-                    <h3 id="resultName"></h3>
-                    <h4 id="resultId"></h4>
-                    <div id="resultDescription"></div>
-                    <div>
-                        <a id="resultUrl" target="_blank">
-                            Link to Webpage
-                        </a>
-                    </div>
-                    <div class="myRow" id='Annotation'>
-                        <button id="chat_send" onclick="Annotation_start()">Annotate on canvas</button>
-                    </div>
-                    <div class="myRow" id='Annotation_finish' style="display: none">
-                        <button id="chat_send" onclick="Annotation_finish()">Annotation Finished</button>
-                    </div>
+                <div class='kg-list' id="kg-list">
                 </div>
             </div>
 
