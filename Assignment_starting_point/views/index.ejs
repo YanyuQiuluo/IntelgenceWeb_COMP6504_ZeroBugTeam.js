@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title><%= title %></title>
+    <title>
+        <%= title %>
+    </title>
     <script src="/socket.io/socket.io.js"></script>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/javascripts/index.js"></script>
     <script src="/javascripts/canvas.js"></script>
@@ -21,83 +24,98 @@
 
 
 <body onload="init(), initDatabase()">
-<div id="initial_form" style="display: block">
-    
-    <form class="container" onsubmit="return false;">
-        <h1><span><%= title %></span></h1>
-        <p style="text-align: center; color: #999; font-size: 0.7em;">
-            Please insert the id of the Room you want to Join, if you do not have a room id, click Generate Room
-        </p>
+    <div id="initial_form" style="display: block">
 
-        <p><label for="name"> Your name </label>
-            <input type="text" id="name" name="name" style="width: 464px;">
-        </p>
-        <p>
-            <label for="roomNo"> Your room </label>
-            <input type="text" id="roomNo" name="roomNo">
-            <button class="roombtn" id="roomNoGenerator" onclick="generateRoom()">Generate Room</button>
-        </p>
-        <p style=" width: 100%"><label for="image_url"> Image (URL) </label><input type="text" id="image_url" name="image_url" style="width: 464px;"></p>
-        <button class="roombtn" id="connect" onclick="connectToRoom()">Connect</button>
-    </form>
-</div>
-<div id="chat_interface" style="display: none">
-    <div>
-    <p><div id="who_you_are" style="display: inline" style="height: 10vh"></div>, you are in room: <div id="in_room" style="display: inline"></div>
-    </div>
-    </p>
-    <div style="width: 100%; height: 50vh">
-            <img id="image" height="100%" >
-            <canvas  id="canvas" ></canvas>
-            <button id="canvas-clear"class="canvas-clear">Clear Mark</button>
-    </div>
-
-
-    <h1>Search the Knowledge Graph</h1>
-    <div class="myRow" id="typeForm">
-        <label for="myType">Type: </label><input type="text" id="myType">
-        <button onclick="widgetInit()">Set type</button>
-    </div>
-    <div class="myRow" id='widget' style="display: none">
-<!--        style="display: none"-->
-        <label for="myInput">Search for: </label><input type="text" id="myInput">
-        <div class="myRow" id="typeSet"></div>
-    </div>
-    <div class="myRow" id='flash'>
-        <button id="chat_send" onclick="knowledge_graph_flash()">Flash</button>
-    </div>
-    <div>
-        <div class='resultPanel' id="resultPanel" style="display: none">
-            <h3 id="resultName"></h3>
-            <h4 id="resultId"></h4>
-            <div id="resultDescription"></div>
-            <div>
-                <a id="resultUrl" target="_blank">
-                    Link to Webpage
-                </a>
-            </div>
-            <div class="myRow" id='Annotation'>
-                <button id="chat_send" onclick="Annotation_start()">Annotate on canvas</button>
-            </div>
-            <div class="myRow" id='Annotation_finish' style="display: none">
-                <button id="chat_send" onclick="Annotation_finish()">Annotation Finished</button>
-            </div>
-        </div>
-    </div>
-
-
-
-<!--    </div>-->
-    <div id="history" style="height: 35vh" class="boxed scrolling" ></div>
-    <div id="input" style="height: 5vh" class=" boxed">
-        <form onsubmit="return false;" style="width: 100%">
-            <p>
-                <label for="name"> chat: </label>
-                <input type="text" id="chat_input" name="chat_input" style="width: 80%; top: 22px;">
-                <button id="chat_send" onclick="sendChatText()" style="width: 80px;">Send</button>
+        <form class="container" onsubmit="return false;">
+            <h1><span>
+                    <%= title %>
+                </span></h1>
+            <p style="text-align: center; color: #999; font-size: 0.7em;">
+                Please insert the id of the Room you want to Join, if you do not have a room id, click Generate Room
             </p>
+
+            <p><label for="name"> Your name </label>
+                <input type="text" id="name" name="name" style="width: 464px;">
+            </p>
+            <p>
+                <label for="roomNo"> Your room </label>
+                <input type="text" id="roomNo" name="roomNo">
+                <button class="roombtn" id="roomNoGenerator" onclick="generateRoom()">Generate Room</button>
+            </p>
+            <p style=" width: 100%"><label for="image_url"> Image (URL) </label><input type="text" id="image_url"
+                    name="image_url" style="width: 464px;"></p>
+            <button class="roombtn" id="connect" onclick="connectToRoom()">Connect</button>
         </form>
     </div>
-</div>
+
+    <div class="clearfix" id="chat_interface" style="display: none; position: relative; height: 800px;">
+        <div style="padding: 20px;">
+            <!-- <p> -->
+            <div id="who_you_are" style="display: inline" style="height: 10vh"></div>, you are in room: <div
+                id="in_room" style="display: inline"></div>
+        </div>
+        <!-- </p> -->
+        <div style="width: 50%; height: 50vh; padding: 20px; position: absolute; top: 60px; left: 0px;">
+            <img id="image" height="100%" width="auto">
+            <canvas id="canvas"></canvas>
+            <button id="canvas-clear" class="canvas-clear">Clear Mark</button>
+        </div>
+
+        <div class="knowledgeGraph"
+            style="width: 50%; height: 100%; position: absolute; top: 60px; right: 0px; padding: 20px;">
+            <h2>
+                <span>Search the Knowledge Graph</span>
+            </h2>
+
+            <div class="myRow" id="typeForm">
+                <label for="myType" style="margin-left: 80px;">Type: </label>
+                <input type="text" id="myType" style="width: 55%; margin-left: 20px;">
+                <button onclick="widgetInit()">Set type</button>
+            </div>
+            <div class="myRow" id='widget' style="display: none">
+                <!--        style="display: none"-->
+                <label for="myInput" style="margin-left: 80px;">Search for: </label>
+                <input type="text" id="myInput" style="width: 55%; margin-left: 20px;">
+                <div class="myRow" id="typeSet" style="display: contents;"></div>
+            </div>
+            <div class="myRow" id='flash'>
+                <button id="chat_send" onclick="knowledge_graph_flash()">Flash</button>
+            </div>
+            <div>
+                <div class='resultPanel' id="resultPanel" style="display: none; padding: 40px;">
+                    <h3 id="resultName"></h3>
+                    <h4 id="resultId"></h4>
+                    <div id="resultDescription"></div>
+                    <div>
+                        <a id="resultUrl" target="_blank">
+                            Link to Webpage
+                        </a>
+                    </div>
+                    <div class="myRow" id='Annotation'>
+                        <button id="chat_send" onclick="Annotation_start()">Annotate on canvas</button>
+                    </div>
+                    <div class="myRow" id='Annotation_finish' style="display: none">
+                        <button id="chat_send" onclick="Annotation_finish()">Annotation Finished</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!--    </div>-->
+        <div id="history" style="height: 35vh; position: absolute; bottom: 60px;" class="boxed scrolling"></div>
+        <div id="input" style="height: 5vh; position: absolute; bottom: 0px;" class=" boxed">
+            <form onsubmit="return false;" style="width: 100%; padding-left: 40px;">
+                <p>
+                    <label for="name"> chat: </label>
+                    <input type="text" id="chat_input" name="chat_input" style="width: 80%; top: 22px;">
+                    <button id="chat_send" onclick="sendChatText()" style="width: 80px;">Send</button>
+                </p>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
