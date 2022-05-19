@@ -179,7 +179,7 @@ function knowledge_graph_flash(){
 function showKgList(row, color){
     $('#kg-list').append(
         $(`
-        <div class="result-body" style = "border-style: solid; border-color: ${color}">
+        <div class="result-body" style = "width:100%; border-radius: 5px; margin-bottom: 10px; border-style: solid; border-color: ${color}; z-index: -2;">
           <h3>${row.name}</h3>
           <h4>${row.description}</h4>
           <div>${row.rc}</div>

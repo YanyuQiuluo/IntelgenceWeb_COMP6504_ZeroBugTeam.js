@@ -121,6 +121,10 @@ button:hover{
   margin-bottom: 60px;
 }
 
+.color {
+  width: 50px;
+}
+
 a {
   color: #00B7FF;
 }
@@ -155,9 +159,17 @@ a {
     background-color: rgba(255,0,0,.1);
 }
 
+#typeForm,
+#widget {
+    position: absolute;
+    width: 100%;
+    padding: 20px;
+}
+
 #flash {
   position: absolute;
-  right: 18px;
-  padding-top: 20px;
-  padding-right: 60px;
+  right: 31px;
+  top: 20px;
 }
+
+
