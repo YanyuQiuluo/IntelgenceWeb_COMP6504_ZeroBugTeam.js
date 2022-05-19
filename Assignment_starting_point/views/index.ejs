@@ -50,13 +50,10 @@
 
     <div class="clearfix" id="chat_interface" style="display: none; position: relative; height: 800px; padding: 20px;">
         <div style="padding: 20px;">
-            <!-- <p> -->
             <div id="who_you_are" style="display: inline" style="height: 10vh"></div>, you are in room: <div
                 id="in_room" style="display: inline"></div>
         </div>
 
-
-        <!-- </p> -->
         <div style="width: 50%; height: 50vh;">
             <img id="image" height="100%" width="auto">
             <canvas id="canvas"></canvas>
@@ -74,32 +71,34 @@
                 <br>
                 <br>
                 <label>
-                    <input type="radio" name="color" value='red' checked>red</label>
+                    <input class="color" type="radio" name="color" value='red' checked>red</label>
                 <label>
-                    <input type="radio" name="color" value='blue'>blue</label>
+                    <input class="color" type="radio" name="color" value='blue'>blue</label>
                 <label>
-                    <input type="radio" name="color" value='green'>green</label>
+                    <input class="color" type="radio" name="color" value='green'>green</label>
                 <label>
-                    <input type="radio" name="color" value='yellow'>yellow</label>
+                    <input class="color" type="radio" name="color" value='yellow'>yellow</label>
                 <label>
-                    <input type="radio" name="color" value='white'>white</label>
+                    <input class="color" type="radio" name="color" value='white'>white</label>
             </form>
 
             <div class="myRow" id="typeForm">
-                <label for="myType" style="margin-left: 80px;">Type: </label>
+                <label for="myType">Type: </label>
                 <input type="text" id="myType" style="width: 55%; margin-left: 20px;">
                 <button onclick="widgetInit()">Set type</button>
+                <div class="myRow" id='flash'>
+                    <button id="chat_send" onclick="knowledge_graph_flash()">Flash</button>
+                </div>
             </div>
             <div class="myRow" id='widget' style="display: none">
-                <!--        style="display: none"-->
-                <label for="myInput" style="margin-left: 80px;">Search for: </label>
-                <input type="text" id="myInput" style="width: 55%; margin-left: 20px;">
+                <label for="myInput">Search for: </label>
+                <input type="text" id="myInput" style="width: 48%; margin-left: 20px;">
                 <div class="myRow" id="typeSet" style="display: contents;"></div>
+                <div class="myRow" id='flash'>
+                    <button id="chat_send" onclick="knowledge_graph_flash()">Flash</button>
+                </div>
             </div>
-            <div class="myRow" id='flash'>
-                <button id="chat_send" onclick="knowledge_graph_flash()">Flash</button>
-            </div>
-            <div>
+            <div style="position: absolute; top: 300px;">
                 <div class='kg-list' id="kg-list">
                 </div>
             </div>
@@ -107,11 +106,9 @@
         </div>
 
 
-
-        <!--    </div>-->
-        <div id="history" style="height: 35vh; position: absolute; bottom: 60px;" class="boxed scrolling"></div>
-        <div id="input" style="height: 5vh; position: absolute; bottom: 0px;" class=" boxed">
-            <form onsubmit="return false;" style="width: 100%; padding-left: 40px;">
+        <div id="history" style="width: 50%; height: 35vh; position: absolute; bottom: 60px;" class="boxed scrolling"></div>
+        <div id="input" style="width: 50%; height: 5vh; position: absolute; bottom: 0px;" class=" boxed">
+            <form onsubmit="return false;" style="width: 100%; padding-left: 10px;">
                 <p>
                     <label for="name"> chat: </label>
                     <input type="text" id="chat_input" name="chat_input" style="width: 80%; top: 22px;">

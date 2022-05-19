@@ -154,6 +154,8 @@ function widgetInit(){
  */
 function selectItem(event){
     let row= event.row;
+    console.log(row);
+    console.log(typeof (row.json));
     let imageUrl= document.getElementById('image_url').value;
     let color = $('input:radio[name="color"]:checked').val();
     socket_KG.emit('kg_emit', room, imageUrl, row, color);
@@ -175,7 +177,7 @@ function knowledge_graph_flash(){
 function showKgList(row, color){
     $('#kg-list').append(
         $(`
-        <div class="result-body" style = "border-style: solid; border-color: ${color}">
+        <div class="result-body" style = "width:100%; border-radius: 5px; margin-bottom: 10px; border-style: solid; border-color: ${color}; z-index: -2;">
           <h3>${row.name}</h3>
           <h4>${row.description}</h4>
           <div>${row.rc}</div>

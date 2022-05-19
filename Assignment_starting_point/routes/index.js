@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var fs = require("fs");
 var multer = require('multer');
 var storage = multer.diskStorage({
     // Setting the path of the images uploaded(saved in temporary files inside the project)
@@ -18,66 +17,20 @@ var upload = multer({
     storage:storage
 });
 
-var Story = require('../models/story');
 var uploadStory = require('../controllers/story');
 
 
 
 
-router.get('/', function(req, res, next) {
-    Story.find({}, function(err, details){
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.render('homepage', {story: details});
-        }
-    })
-});
+router.get('/', uploadStory.find);
 
-router.get('/authorSort_asc', function(req, res, next) {
-    Story.find({}, function(err, details){
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.render('homepage', {story: details});
-        }
-    }).sort({"author": 1})
-});
+router.get('/authorSort_asc', uploadStory.authorSort_asc);
 
-router.get('/authorSort_desc', function(req, res, next) {
-    Story.find({}, function(err, details){
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.render('homepage', {story: details});
-        }
-    }).sort({"author": -1})
-});
+router.get('/authorSort_desc', uploadStory.authorSort_desc);
 
-router.get('/timeSort_asc', function(req, res, next) {
-    Story.find({}, function(err, details){
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.render('homepage', {story: details});
-        }
-    }).sort({"date": 1})
-});
+router.get('/timeSort_asc', uploadStory.timeSort_asc);
 
-router.get('/timeSort_desc', function(req, res, next) {
-    Story.find({}, function(err, details){
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.render('homepage', {story: details});
-        }
-    }).sort({"date": -1})
-});
+router.get('/timeSort_desc', uploadStory.timeSort_desc);
 
 router.get('/index', function(req, res, next) {
     res.render('index', { title: 'Image Browsing' });

@@ -83,8 +83,9 @@ function initCanvas(sckt, imageUrl, roomNo, name) {
     socket_canvas.on('cleanup',function (c_width, c_height){
         console.log(ctx);
         ctx.clearRect(0, 0, c_width, c_height);
-        //img.addEventListener();
         ctx.drawImage(img, 0, 0, c_width, c_height);
+        $('#kg-list').empty();
+
     });
 
 
