@@ -31,10 +31,6 @@ function preImg(sourceId, targetId) {
  * storeImage
  */
 function uploadindex(){
-<<<<<<< HEAD
-=======
-    console.log("Uploaded successfully");
->>>>>>> 775a67f236ef232896b907290ab594bc2e390a2d
     let formArray = $("form").serializeArray();
     var story={};
     for (let index in formArray){
