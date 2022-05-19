@@ -54,7 +54,7 @@ function initChatSocket() {
 
         storeCachedData({userId: userId, chatText: chatText,room:room})
             .then (r =>console.log('successful') )
-            .catch(error=>console.log())
+            .catch(error => console.log("error  inserting: "+ JSON.stringify(error)))
     })
 
 
@@ -160,6 +160,9 @@ function selectItem(event){
     let color = $('input:radio[name="color"]:checked').val();
     socket_KG.emit('kg_emit', room, imageUrl, row, color);
     console.log("======================");
+    storeKnowledgeData({room: room, row: row, color: color})
+        .then (r =>'Successful')
+        .catch(error => console.log("error  inserting: "+ JSON.stringify(error)))
 }
 
 function knowledge_graph_flash(){

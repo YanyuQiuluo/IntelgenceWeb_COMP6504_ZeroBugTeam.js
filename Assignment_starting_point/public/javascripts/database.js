@@ -8,7 +8,7 @@ const Chatroom_DB_NAME= 'db_story';
 const Chatroom_STORE_NAME= 'Chatroom';
 const Upload_IMAGE_NAME='Story';
 const Lecture_NAME='lecture';
-
+const showKgList_NAME='knowledge_graph'
 /**
  * it inits the database
  */
@@ -36,6 +36,13 @@ async function initDatabase(){
                         autoIncrement: true
                     });
                     forecastDB.createIndex('userId', 'userId', {unique: false, multiEntry: true});
+                }
+                if (!upgradeDb.objectStoreNames.contains(showKgList_NAME)) {
+                    let forecastDB = upgradeDb.createObjectStore(showKgList_NAME, {
+                        keyPath: 'ID',
+                        autoIncrement: true
+                    });
+                    forecastDB.createIndex('ID', 'ID', {unique: false, multiEntry: true});
                 }
 
             }
@@ -135,15 +142,15 @@ async function storeLecture(Object) {
     if (!db)
         await (initDatabase());
     if (db) {
-        //try{
+        try{
             let tx = await db.transaction(Lecture_NAME, 'readwrite');
             let store = await tx.objectStore(Lecture_NAME);
             await store.put(Object);
             await  tx.complete;
             console.log('added item to the store! '+ JSON.stringify(Object));
-        //} catch(error) {
-        //    localStorage.setItem(Object, JSON.stringify(Object));
-      //  };
+        } catch(error) {
+            localStorage.setItem(Object, JSON.stringify(Object));
+        };
     }
     else localStorage.setItem(Object, JSON.stringify(Object));
 }
@@ -159,7 +166,7 @@ async function getLecture(a,imageUrl) {
     if (!db)
         await initDatabase();
     if (db) {
-        //try {
+        try {
             console.log('fetching: ');
             let tx = await db.transaction(Lecture_NAME, 'readonly');
             let store = await tx.objectStore(Lecture_NAME);
@@ -168,21 +175,45 @@ async function getLecture(a,imageUrl) {
             await tx.complete;
 
             //let cvx=document.getElementById('canvas')
-           // let ctx=cvx.getContext('2d')
-              let canvas = $('#canvas');
-              let ctx = canvas[0].getContext('2d');
+            // let ctx=cvx.getContext('2d')
+            let canvas = $('#canvas');
+            let ctx = canvas[0].getContext('2d');
             for (let l of readingsList) {
-                console.log(ctx,l.width,l.height,l.prevX,l.prevY,l.currX,l.currY,l.color,l.thickness,l.imageUrl)
-                if(imageUrl===l.imageUrl){
-                    drawOnCanvas(ctx,l.width,l.height,l.prevX,l.prevY,l.currX,l.currY,l.color,l.thickness)
+                console.log(ctx, l.width, l.height, l.prevX, l.prevY, l.currX, l.currY, l.color, l.thickness, l.imageUrl)
+                if (imageUrl === l.imageUrl) {
+                    drawOnCanvas(ctx, l.width, l.height, l.prevX, l.prevY, l.currX, l.currY, l.color, l.thickness)
 
                 }
             }
-       // } catch (error) {
-        //    console.log(error);
+        } catch (error) {
+            console.log(error);
         }
 
-
+    }
 }
 window.getLecture= getLecture;
 
+/**
+ * store Konwledge in the indexDB
+ * @param Object
+ * @returns {Promise<void>}
+ */
+
+async function storeKnowledgeData(Object) {
+    console.log('inserting: '+JSON.stringify(Object));
+    if (!db)
+        await initDatabase();
+    if (db) {
+        try{
+            let tx = await db.transaction(showKgList_NAME, 'readwrite');
+            let store = await tx.objectStore(showKgList_NAME);
+            await store.put(Object);
+            await  tx.complete;
+            console.log('added item to the store! '+ JSON.stringify(Object));
+        } catch(error) {
+            localStorage.setItem(Object, JSON.stringify(Object));
+        };
+    }
+    else localStorage.setItem(Object, JSON.stringify(Object));
+}
+window.storeKnowledgeData= storeKnowledgeData;
