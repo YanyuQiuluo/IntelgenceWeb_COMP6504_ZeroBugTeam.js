@@ -63,6 +63,7 @@ function initCanvas(sckt, imageUrl, roomNo, name) {
                     color: color,
                     thickness: thickness
                 }).then(r =>console.log('Successful'))
+                    .catch(error => console.log("error  inserting: "+ JSON.stringify(error)))
             }
         }
     });
