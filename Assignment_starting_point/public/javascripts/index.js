@@ -58,8 +58,6 @@ function initChatSocket() {
     })
 
 
-
-
 /**
  * called to generate a random room number
  * This is a simplification. A real world implementation would ask the server to generate a unique room number
@@ -192,3 +190,41 @@ function showKgList(row, color){
     `)
     )
 }
+
+
+
+
+/**
+ * When the client gets online, it hides the off line warning
+ */
+/**
+window.addEventListener('online', function(e) {
+    // Resync data with server.
+    console.log("You are online");
+    hideOfflineWarning();
+    getCachedData(false).then(r => 'Successful');
+}, false);
+
+
+function showOfflineWarning(){
+    if (document.getElementById('offline_div')!=null)
+        document.getElementById('offline_div').style.display='block';
+}
+
+function hideOfflineWarning(){
+    if (document.getElementById('offline_div')!=null)
+        document.getElementById('offline_div').style.display='none';
+}
+
+ */
+/**
+ * When the client gets off-line, it shows an off line warning to the user
+ * so that it is clear that the data is stale
+ */
+/**
+window.addEventListener('offline', function(e) {
+    // Queue up events for server.
+    console.log("You are offline");
+    showOfflineWarning();
+}, false);
+ */

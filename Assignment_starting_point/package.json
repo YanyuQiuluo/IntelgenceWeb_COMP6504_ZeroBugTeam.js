@@ -24,5 +24,8 @@
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0",
     "util": "^0.12.4"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.6.10"
   }
 }
