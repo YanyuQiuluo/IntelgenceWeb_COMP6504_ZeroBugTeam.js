@@ -5,7 +5,7 @@ var multer = require('multer');
 var storage = multer.diskStorage({
     // Setting the path of the images uploaded(saved in temporary files inside the project)
     destination: function(req, file, cb){
-        //cb(null, '../public/images');
+        // cb(null, '../public/images');
         cb(null, '../Assignment_starting_point/public/images');
     },
     // Setting the file name of images uploaded(randomly)
