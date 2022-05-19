@@ -9,8 +9,11 @@ const Chatroom_STORE_NAME= 'Chatroom';
 const Upload_IMAGE_NAME='Story';
 const Lecture_NAME='lecture';
 const showKgList_NAME='knowledge_graph'
+
+
 /**
- * it inits the database
+ * it inits the database and creates an index for the sum field
+ * @returns {Promise<void>}
  */
 async function initDatabase(){
     if (!db) {
@@ -53,7 +56,10 @@ async function initDatabase(){
 window.initDatabase= initDatabase;
 
 /**
- * it saves the chatroom
+ * it saves the chatroom into the database
+ * if the database is not supported, it will use localstorage
+ * @param Object It's an array that contains roomId, UserId, chatText
+ * @returns {Promise<void>}
  */
 async function storeCachedData(Object) {
     console.log('inserting: '+JSON.stringify(Object));
@@ -75,9 +81,10 @@ async function storeCachedData(Object) {
 window.storeCachedData= storeCachedData;
 
 /**
- * it saves the Upload
- * @param city
- * @param forecastObject
+ * it saves the upload story into the database
+ * if the database is not supported, it will use localstorage
+ * @param Object Contains the annotation's coordinates, room number, userId, imageUrl
+ * @returns {Promise<void>}
  */
 
 async function storeImage(Object) {
@@ -101,10 +108,10 @@ window.storeImage= storeImage;
 
 
 /**
- * Get history chatText
- * @param city
- * @param date
- * @returns {Promise<*[]>}
+ * it retrieves all the numbers that have summed to chatroom from the database
+ * if the database is not supported, it will use localstorage
+ * @param a Contains chatText，roomNo，UserId
+ * @returns {Promise<void>}
  */
 
 async function getCachedData(a) {
@@ -133,8 +140,9 @@ window.getCachedData= getCachedData;
 
 
 /**
- * store Lecture in indexDB
- * @param Object
+ * it saves the Comment coordinates into the database
+ * if the database is not supported, it will use localstorage
+ * @param Object Contains the annotation's coordinates, room number, userId, imageUrl
  * @returns {Promise<void>}
  */
 async function storeLecture(Object) {
@@ -158,8 +166,11 @@ window.storeLecture= storeLecture;
 
 
 /**
- * get indexDB
- * @param a
+ * it retrieves all the numbers that have summed to chatroom from the database
+ * if the database is not supported, it will use localstorage
+ * @param a  Contains the annotation's coordinates, room number, userId, imageUrl
+ * @param imageUrl Enter the URL of the picture entered in the chat box again for comparison
+ * with the URL in the database
  * @returns {Promise<void>}
  */
 async function getLecture(a,imageUrl) {
@@ -194,8 +205,9 @@ async function getLecture(a,imageUrl) {
 window.getLecture= getLecture;
 
 /**
- * store Konwledge in the indexDB
- * @param Object
+ * it saves the knowledge data into the database
+ * if the database is not supported, it will use localstorage
+ * @param Object The content of the knowledge graph is saved in JSON format
  * @returns {Promise<void>}
  */
 

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27e46d13-615a-42ea-88fd-6e2c5fd3da1a" name="Changes" comment="" />
+    <list default="true" id="27e46d13-615a-42ea-88fd-6e2c5fd3da1a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assignment_starting_point/public/javascripts/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment_starting_point/public/javascripts/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment_starting_point/public/javascripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment_starting_point/public/javascripts/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,18 +25,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Assignment_starting_point" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/guoyu/Documents/GitHub/project6504",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="Unnamed" type="NodeJSConfigurationType" path-to-node="$PROJECT_DIR$/../node" nameIsGenerated="true" working-dir="$PROJECT_DIR$">
       <method v="2" />
@@ -55,6 +55,7 @@
       <workItem from="1648808913539" duration="596000" />
       <workItem from="1649279075444" duration="1246000" />
       <workItem from="1652537208860" duration="2000" />
+      <workItem from="1652995030833" duration="22000" />
     </task>
     <servers />
   </component>
