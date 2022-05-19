@@ -1,7 +1,61 @@
 let Story = require('../models/story');
-// var Canvas = require('canvas');
 var fs = require("fs");
 var moment = require("moment");
+
+exports.find = function(req, res, next) {
+    Story.find({}, function(err, details){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render('homepage', {story: details});
+        }
+    })
+}
+
+exports.authorSort_asc = function(req, res, next) {
+    Story.find({}, function(err, details){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render('homepage', {story: details});
+        }
+    }).sort({"author": 1})
+}
+
+exports.authorSort_desc = function(req, res, next) {
+    Story.find({}, function(err, details){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render('homepage', {story: details});
+        }
+    }).sort({"author": -1})
+}
+
+exports.timeSort_asc = function(req, res, next) {
+    Story.find({}, function(err, details){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render('homepage', {story: details});
+        }
+    }).sort({"date": 1})
+}
+
+exports.timeSort_desc = function(req, res, next) {
+    Story.find({}, function(err, details){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render('homepage', {story: details});
+        }
+    }).sort({"date": -1})
+}
 
 exports.insert = function (req, res, next) {
         var imgData = fs.readFileSync(req.file.path);
