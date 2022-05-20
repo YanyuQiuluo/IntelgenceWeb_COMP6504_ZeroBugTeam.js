@@ -17,7 +17,7 @@ let dataCacheName = 'weatherData-v1';
 let cacheName = 'weatherPWA-step-8-1';
 let filesToCache = [
     '/',
-    '/javascripts/uploading.js',
+    '/javascripts/uploadimg.js',
     '/javascripts/index.css',
     '/javascripts/canvas.css',
     '/javascripts/database.js',
