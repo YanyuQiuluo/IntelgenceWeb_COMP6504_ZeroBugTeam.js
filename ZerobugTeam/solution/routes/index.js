@@ -6,7 +6,7 @@ var storage = multer.diskStorage({
     // Setting the path of the images uploaded(saved in temporary files inside the project)
     destination: function(req, file, cb){
         //cb(null, '../public/images');
-        cb(null, '../ZerobugTeam/public/images');
+        cb(null, './ZerobugTeam/solution/public/images');
     },
     // Setting the file name of images uploaded(randomly)
     filename: function(req, file, cb){
