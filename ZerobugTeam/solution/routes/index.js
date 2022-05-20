@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-
+var path = require('path')
+var mypath = path.join(__dirname,'../')
 var multer = require('multer');
 var storage = multer.diskStorage({
     // Setting the path of the images uploaded(saved in temporary files inside the project)
     destination: function(req, file, cb){
-       cb(null, process.cwd()+'/public/images');
-       // cb(null, '../ZerobugTeam/solution/public/images');
+       cb(null, mypath + '/public/images');
     },
     // Setting the file name of images uploaded(randomly)
     filename: function(req, file, cb){
