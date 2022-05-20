@@ -1,0 +1,342 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Zerobug Team",
+        "version": "1.0",
+        "description": "COM3504/COM6504 Intelligent Web Team Assignment",
+        "termsOfService": "http://api_url/terms/",
+        "contact": {
+            "name": "Aijia Li",
+            "email": "ali31@sheffield.ac.uk"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/",
+            "description": "the only Local server"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Welcome page"
+                ],
+                "description": "getting reports data from MongoDB",
+                "responses": {
+                    "304": {
+                        "description": "Correct read MongoDB and show the data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/story"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/authorSort_asc": {
+            "get": {
+                "tags": [
+                    "Welcome page"
+                ],
+                "description": "getting reports data from MongoDB - sort by author name(A to Z)",
+                "responses": {
+                    "304": {
+                        "description": "Correct read MongoDB and show the ordered data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/story"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/authorSort_desc": {
+            "get": {
+                "tags": [
+                    "Welcome page"
+                ],
+                "description": "getting reports data from MongoDB - sort by author name(Z to A)",
+                "responses": {
+                    "304": {
+                        "description": "Correct read MongoDB and show the ordered data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/story"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/timeSort_asc": {
+            "get": {
+                "tags": [
+                    "Welcome page"
+                ],
+                "description": "getting reports data from MongoDB - sort by time(Early to Now)",
+                "responses": {
+                    "304": {
+                        "description": "Correct read MongoDB and show the ordered data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/story"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/timeSort_desc": {
+            "get": {
+                "tags": [
+                    "Welcome page"
+                ],
+                "description": "getting reports data from MongoDB - sort by time(Now to Early)",
+                "responses": {
+                    "304": {
+                        "description": "Correct read MongoDB and show the ordered data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/story"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/uploadimg": {
+            "get": {
+                "tags": [
+                    "Upload Story"
+                ],
+                "description": "users upload their stories",
+                "responses": {
+                    "304": {
+                        "description": "Correct show the upload story page"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Upload Story"
+                ],
+                "description": "Story was obtained",
+                "operationId": "xForm",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "description": "Title of story",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/title"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "description": "Author of story",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/author"
+                        }
+                    },
+                    {
+                        "name": "intro",
+                        "description": "Introduction of story",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/intro"
+                        }
+                    },
+                    {
+                        "name": "photo",
+                        "description": "Photo of story",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/photo"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/story"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "302": {
+                        "description": "Story was uploded",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/story"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/index": {
+            "get": {
+                "tags": [
+                    "Chat Room"
+                ],
+                "description": "Generate a chat room and enter in",
+                "operationId": "initial_form",
+                "parameters": [
+                    {
+                        "name": "userid",
+                        "description": "User name in chat room",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/userid"
+                        }
+                    },
+                    {
+                        "name": "roomid",
+                        "description": "The chat room number",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/roomid"
+                        }
+                    },
+                    {
+                        "name": "photo",
+                        "description": "The photo in chat room",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/photo_path"
+                        }
+                    }],
+                "responses": {
+                    "304": {
+                        "description": "Correct show the generate chat room page",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/chatroom"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "title": {
+                "type": "string",
+                "description": "title of a story",
+                "example": "A Title"
+            },
+            "author": {
+                "type": "string",
+                "description": "author of a story",
+                "example": "Mike"
+            },
+            "date": {
+                "type": "string",
+                "description": "the time of upload the story, format is DD-MM-YYYY HH:mm:ss",
+                "example": "18-05-2022 15:45:59"
+            },
+            "intro": {
+                "type": "string",
+                "description": "a short text uploaded by author",
+                "example": "This is the castle I visited yesterday."
+            },
+            "photo": {
+                "type": "string",
+                "description": "the name of the photo",
+                "example": "castle.jpg"
+            },
+            "basse64": {
+                "type": "string",
+                "description": "the base64 code of the photo"
+            },
+            "photo_path": {
+                "type": "string",
+                "description": "photo path",
+                "example": "images/your photo.jpg"
+            },
+            "userid": {
+                "type": "string",
+                "description": "user id in chat room",
+                "example": "Mike"
+            },
+            "roomid": {
+                "type": "string",
+                "description": "chat room number",
+                "example": "R929"
+            },
+            "story": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "$ref": "#/components/schemas/title"
+                    },
+                    "author": {
+                        "$ref": "#/components/schemas/author"
+                    },
+                    "date": {
+                        "$ref": "#/components/schemas/date"
+                    },
+                    "intro": {
+                        "$ref": "#/components/schemas/intro"
+                    },
+                    "photo": {
+                        "$ref": "#/components/schemas/photo"
+                    },
+                    "base64": {
+                        "$ref": "#/components/schemas/basse64"
+                    }
+                }
+            },
+            "chatroom": {
+                "type": "object",
+                "properties": {
+                    "userid":{
+                        "$ref":"#/components/schemas/userid"
+                    },
+                    "roomid":{
+                        "$ref":"#/components/schemas/roomid"
+                    },
+                    "photopath":{
+                        "$ref":"#/components/schemas/photo_path"
+                    }
+                }
+            }
+        }
+    }
+}
