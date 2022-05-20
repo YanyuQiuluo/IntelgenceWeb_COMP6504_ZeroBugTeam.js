@@ -92,7 +92,11 @@ If someone enter the same room, you will be notified and receive messages from o
 
 When you exit the room, pass the same name, the same photo and the same room number again, you will still see the picture tag and chat history you left last time.
 
+ ### Offline Situation
+ You can also in Offline status to use this website.
+ ![avater](./Screenshots/offline.jpg)
 
+ 、
  ### Swagger Documentation
  If you want to check our swagger ducumentation, you can insert URL: http://localhost:3000/api-docs to find it.
 
