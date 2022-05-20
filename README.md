@@ -43,11 +43,11 @@ When you first open a web page, it looks like this because you don't have any da
 When some stories in your MongoDB, you will see them on the screen.
 ![avatar](./ZerobugTeam/Screenshots/welcome_1.jpg)
 <br>
-You can click the three icons in the lower right corner
-<b>Icon Above:</b> Back to top function
-<b>Icon Center:</b> Publish your story
-<b>Icon Blow:</b> Jump page to create a chat room
-<b>sort function:</b> You can choose how you want to sort these stories.
+You can click the three icons in the lower right corner.<br>
+<b>Icon Above:</b> Back to top function<br>
+<b>Icon Center:</b> Publish your story<br>
+<b>Icon Blow:</b> Jump page to create a chat room<br>
+<b>sort function:</b> You can choose how you want to sort these stories.<br>
 ![avatar](./ZerobugTeam/Screenshots/sort.jpg)
 We provide five ways to sort:
 > Deafault [ Read in order of data in the database ]
