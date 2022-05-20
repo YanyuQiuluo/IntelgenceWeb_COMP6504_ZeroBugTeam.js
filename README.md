@@ -48,13 +48,13 @@ You can click the three icons in the lower right corner.<br>
 <b>Icon Center:</b> Publish your story<br>
 <b>Icon Blow:</b> Jump page to create a chat room<br>
 <b>sort function:</b> You can choose how you want to sort these stories.<br>
-![avatar](./ZerobugTeam/Screenshots/sort.jpg)
-We provide five ways to sort:
-> Deafault [ Read in order of data in the database ]
-> Author: A to Z
-> Author: Z to A
-> Time: Early to Now
-> Time: Now to Early
+![avatar](./ZerobugTeam/Screenshots/sort.jpg)<br>
+We provide five ways to sort:<br>
+> Deafault [ Read in order of data in the database ]<br>
+> Author: A to Z<br>
+> Author: Z to A<br>
+> Time: Early to Now<br>
+> Time: Now to Early<br>
 
 <br>
 
