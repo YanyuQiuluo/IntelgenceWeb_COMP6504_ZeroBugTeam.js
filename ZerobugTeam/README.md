@@ -96,7 +96,6 @@ When you exit the room, pass the same name, the same photo and the same room num
  You can also in Offline status to use this website.
  ![avater](./Screenshots/offline.jpg)
 
- 、
  ### Swagger Documentation
  If you want to check our swagger ducumentation, you can insert URL: http://localhost:3000/api-docs to find it.
 
